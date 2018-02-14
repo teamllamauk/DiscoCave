@@ -41,7 +41,7 @@ rGPIO.setup(led_blue_pin,rGPIO.OUT)
 rGPIO.setup(led_orange_pin,rGPIO.OUT)
 rGPIO.setup(led_white_pin,rGPIO.OUT)
 
-rGPIO.output(btn_red_pin,rGPIO.LOW)
+rGPIO.output(led_red_pin,rGPIO.LOW)
 rGPIO.output(led_green_pin,rGPIO.LOW)
 rGPIO.output(led_blue_pin,rGPIO.LOW)
 rGPIO.output(led_orange_pin,rGPIO.LOW)
@@ -58,38 +58,38 @@ def btn_Callback(button_pin):
     print (button_pin)
     if button_pin == btn_red_pin:
         if btn_red_flag == 0:
-            rGPIO.output(btn_red_pin,rGPIO.HIGH)
+            rGPIO.output(led_red_pin,rGPIO.HIGH)
             btn_red_flag = 1
         else:
-            rGPIO.output(btn_red_pin,rGPIO.LOW)
+            rGPIO.output(led_red_pin,rGPIO.LOW)
             btn_red_flag = 0
     elif button_pin == btn_green_pin:
         if btn_green_flag == 0:
-            rGPIO.output(btn_green_pin,rGPIO.HIGH)
+            rGPIO.output(led_green_pin,rGPIO.HIGH)
             btn_green_flag = 1
         else:
-            rGPIO.output(btn_green_pin,rGPIO.LOW)
+            rGPIO.output(led_green_pin,rGPIO.LOW)
             btn_green_flag = 0
     elif button_pin == btn_blue_pin:
         if btn_blue_flag == 0:
-            rGPIO.output(btn_blue_pin,rGPIO.HIGH)
+            rGPIO.output(led_blue_pin,rGPIO.HIGH)
             btn_blue_flag = 1
         else:
-            rGPIO.output(btn_blue_pin,rGPIO.LOW)
+            rGPIO.output(led_blue_pin,rGPIO.LOW)
             btn_blue_flag = 0
     elif button_pin == btn_orange_pin:
         if btn_orange_flag == 0:
-            rGPIO.output(btn_orange_pin,rGPIO.HIGH)
+            rGPIO.output(led_orange_pin,rGPIO.HIGH)
             btn_orange_flag = 1
         else:
-            rGPIO.output(btn_orange_pin,rGPIO.LOW)
+            rGPIO.output(led_orange_pin,rGPIO.LOW)
             btn_orange_flag = 0
     elif button_pin == btn_white_pin:
         if btn_white_flag == 0:
-            rGPIO.output(btn_white_pin,rGPIO.HIGH)
+            rGPIO.output(led_white_pin,rGPIO.HIGH)
             btn_white_flag = 1
         else:
-            rGPIO.output(btn_white_pin,rGPIO.LOW)
+            rGPIO.output(led_white_pin,rGPIO.LOW)
             btn_white_flag = 0
 
 
