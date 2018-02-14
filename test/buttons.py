@@ -39,29 +39,29 @@ def btn_Callback(button_pin):
     print button_pin
     if button_pin == btn_red_pin:
         if btn_red_flag == 0:
-            GPIO.output(btn_red_pin,GPIO.HIGH)
+            rGPIO.output(btn_red_pin,rGPIO.HIGH)
         else:
-            GPIO.output(btn_red_pin,GPIO.LOW)
+            rGPIO.output(btn_red_pin,rGPIO.LOW)
     elif button_pin == btn_green_pin:
         if btn_green_flag == 0:
-            GPIO.output(btn_green_pin,GPIO.HIGH)
+            rGPIO.output(btn_green_pin,rGPIO.HIGH)
         else:
-            GPIO.output(btn_green_pin,GPIO.LOW)
+            rGPIO.output(btn_green_pin,rGPIO.LOW)
     elif button_pin == btn_blue_pin:
         if btn_blue_flag == 0:
-            GPIO.output(btn_blue_pin,GPIO.HIGH)
+            rGPIO.output(btn_blue_pin,rGPIO.HIGH)
         else:
-            GPIO.output(btn_blue_pin,GPIO.LOW)    
+            rGPIO.output(btn_blue_pin,rGPIO.LOW)    
     elif button_pin == btn_orange_pin:
         if btn_orange_flag == 0:
-            GPIO.output(btn_orange_pin,GPIO.HIGH)
+            rGPIO.output(btn_orange_pin,rGPIO.HIGH)
         else:
-            GPIO.output(btn_orange_pin,GPIO.LOW)    
+            rGPIO.output(btn_orange_pin,rGPIO.LOW)    
     elif button_pin == btn_white_pin:
         if btn_white_flag == 0:
-            GPIO.output(btn_white_pin,GPIO.HIGH)
+            rGPIO.output(btn_white_pin,rGPIO.HIGH)
         else:
-            GPIO.output(btn_white_pin,GPIO.LOW)
+            rGPIO.output(btn_white_pin,rGPIO.LOW)
 
 
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=300)
