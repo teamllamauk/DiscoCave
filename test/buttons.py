@@ -17,11 +17,11 @@ led_blue_pin = 1
 led_orange_pin = 24
 led_white_pin = 13
 
-btn_red_flag = 0
-btn_green_flag = 0
-btn_blue_flag = 0
-btn_orange_flag = 0
-btn_white_flag = 0
+global btn_red_flag = 0
+global btn_green_flag = 0
+global btn_blue_flag = 0
+global btn_orange_flag = 0
+global btn_white_flag = 0
 
 rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
@@ -35,7 +35,20 @@ rGPIO.setup(led_blue_pin,rGPIO.OUT)
 rGPIO.setup(led_orange_pin,rGPIO.OUT)
 rGPIO.setup(led_white_pin,rGPIO.OUT)
 
+rGPIO.output(btn_red_pin,rGPIO.LOW)
+rGPIO.output(led_green_pin,rGPIO.LOW)
+rGPIO.output(led_blue_pin,rGPIO.LOW)
+rGPIO.output(led_orange_pin,rGPIO.LOW)
+rGPIO.output(led_white_pin,rGPIO.LOW)
+
 def btn_Callback(button_pin):
+    
+    global btn_red_flag
+    global btn_green_flag
+    global btn_blue_flag
+    global btn_orange_flag
+    global btn_white_flag
+    
     print (button_pin)
     if button_pin == btn_red_pin:
         if btn_red_flag == 0:
