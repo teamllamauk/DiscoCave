@@ -36,7 +36,7 @@ rGPIO.setup(led_orange_pin,rGPIO.OUT)
 rGPIO.setup(led_white_pin,rGPIO.OUT)
 
 def btn_Callback(button_pin):
-    print button_pin
+    print (button_pin)
     if button_pin == btn_red_pin:
         if btn_red_flag == 0:
             rGPIO.output(btn_red_pin,rGPIO.HIGH)
