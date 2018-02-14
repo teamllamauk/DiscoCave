@@ -2,7 +2,7 @@
 
 import RPi.GPIO as rGPIO
 
-rGPIO.setmode(GPIO.BCM)
+rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
 btn_red_pin = 25
