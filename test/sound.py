@@ -2,17 +2,27 @@
 
 #import os
 import sys
+import time
+import threading
+import RPi.GPIO as GPIO
+
 from pygame import mixer
+
+
+def playSound():
+    mixer.init()
+    mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
+    mixer.music.play()
+
 
 try:
     #subprocess.call('mpg123 -q /home/pi/Development/DiscoCave/audio/vegimal.mp3 &')
     #subprocess.Popen(['mpg123', '/home/pi/Development/DiscoCave/audio/vegimal.mp3'])
     #subprocess.call('mpg123 -q /home/pi/Development/DiscoCave/audio/veg.mp3 &')
     
-    mixer.init()
-    mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
-    mixer.music.play()
-    
+    t1 = threading.Thread(target=playSound)
+    t1.start()
+            
     while mixer.get_busy():
         print(".")
     
