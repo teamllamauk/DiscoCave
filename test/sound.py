@@ -22,9 +22,10 @@ def playSound():
     while pygame.mixer.music.get_busy() == True:
         rGPIO.output(led_red_pin,rGPIO.HIGH)
         time.sleep(0.1)
-        rGPIO.output(led_red_pin,rGPIO.Low)
+        rGPIO.output(led_red_pin,rGPIO.LOW)
         time.sleep(0.1)
     
+    rGPIO.output(led_red_pin,rGPIO.LOW)
     print("Finished")
     
 
