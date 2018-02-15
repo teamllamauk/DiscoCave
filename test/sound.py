@@ -10,9 +10,11 @@ from pygame import mixer
 
 
 def playSound():
+    print("Start Playback")
     mixer.init()
     mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
     mixer.music.play()
+    print("End Playback")
 
 
 try:
