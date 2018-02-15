@@ -10,9 +10,9 @@ import RPi.GPIO as rGPIO
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
-led_red_pin = 8
-rGPIO.setup(led_red_pin,rGPIO.OUT)
-rGPIO.output(led_red_pin,rGPIO.LOW)
+led_orange_pin = 24
+rGPIO.setup(led_orange_pin,rGPIO.OUT)
+rGPIO.output(led_orange_pin,rGPIO.LOW)
 
 def playSound():
     print("Start")
@@ -20,32 +20,18 @@ def playSound():
     pygame.mixer.music.load("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        rGPIO.output(led_red_pin,rGPIO.HIGH)
-        time.sleep(0.2)
-        rGPIO.output(led_red_pin,rGPIO.LOW)
-        time.sleep(0.2)
+        rGPIO.output(led_orange_pin,rGPIO.HIGH)
+        time.sleep(0.25)
+        rGPIO.output(led_orange_pin,rGPIO.LOW)
+        time.sleep(0.25)
     
-    rGPIO.output(led_red_pin,rGPIO.LOW)
-    print("Finished")
-    
+    rGPIO.output(led_orange_pin,rGPIO.LOW)
+    print("Finished")    
 
 
-try:
-    #subprocess.call('mpg123 -q /home/pi/Development/DiscoCave/audio/vegimal.mp3 &')
-    #subprocess.Popen(['mpg123', '/home/pi/Development/DiscoCave/audio/vegimal.mp3'])
-    #subprocess.call('mpg123 -q /home/pi/Development/DiscoCave/audio/veg.mp3 &')
-    
+try:        
     t1 = threading.Thread(target=playSound)
-    t1.start()
-    
-    
-    #pygame.mixer.init()
-    #pygame.mixer.music.load("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
-    #pygame.mixer.music.play()
-    #while pygame.mixer.music.get_busy() == True:
-    #    print(".")
-    
-    #print("Finished")
+    t1.start()    
     
 except:
     print("Unexpected error:", sys.exc_info()[0])
