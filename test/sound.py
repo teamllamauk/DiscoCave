@@ -4,9 +4,15 @@
 import sys
 import time
 import threading
-import RPi.GPIO as GPIO
 import pygame
+import RPi.GPIO as rGPIO
 
+rGPIO.setmode(rGPIO.BCM)
+rGPIO.setwarnings(False)
+
+led_red_pin = 8
+rGPIO.setup(led_red_pin,rGPIO.OUT)
+rGPIO.output(led_red_pin,rGPIO.LOW)
 
 def playSound():
     print("Start")
@@ -14,7 +20,10 @@ def playSound():
     pygame.mixer.music.load("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        print('.', end='')
+        rGPIO.output(led_red_pin,rGPIO.HIGH)
+        time.sleep(0.1)
+        rGPIO.output(led_red_pin,rGPIO.Low)
+        time.sleep(0.1)
     
     print("Finished")
     
