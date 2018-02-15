@@ -5,17 +5,14 @@ import sys
 import time
 import threading
 import RPi.GPIO as GPIO
-
-from pygame import mixer
+import pygame
 
 
 def playSound():
-    print("Start Playback")
-    mixer.init()
-    #mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
-    sound = mixer.Sound("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
-    sound.play()
-    print("End Playback")
+    pygame.mixer.init()
+    pygame.mixer.music.load("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
+    pygame.mixer.music.play()
+    
 
 
 try:
@@ -26,7 +23,7 @@ try:
     t1 = threading.Thread(target=playSound)
     t1.start()
             
-    while pygame.mixer.get_busy():
+    while pygame.mixer.music.get_busy() == True:
         print(".")
     
     print("Finished")
