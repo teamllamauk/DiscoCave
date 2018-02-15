@@ -14,7 +14,7 @@ def playSound():
     pygame.mixer.music.load("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        print(".")
+        print('.', end='')
     
     print("Finished")
     
