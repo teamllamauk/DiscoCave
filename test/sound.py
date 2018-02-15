@@ -13,10 +13,10 @@ try:
     mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
     mixer.music.play()
     
-    if mixer.get_busy():
+    while mixer.get_busy():
         print(".")
-    else:
-        print("Finished")
+    
+    print("Finished")
     
 except:
     print("Unexpected error:", sys.exc_info()[0])
