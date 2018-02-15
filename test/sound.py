@@ -2,4 +2,4 @@
 
 import os
 
-os.system('mpg123 -q vader.mp3 &')
+os.system('mpg123 -q audio/vegimal.mp3 &')
