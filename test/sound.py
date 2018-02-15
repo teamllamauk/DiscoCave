@@ -12,8 +12,9 @@ from pygame import mixer
 def playSound():
     print("Start Playback")
     mixer.init()
-    mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
-    mixer.music.play()
+    #mixer.music.load('/home/pi/Development/DiscoCave/audio/vegimal.mp3')
+    sound = mixer.Sound("/home/pi/Development/DiscoCave/audio/vegimal.mp3")
+    sound.play()
     print("End Playback")
 
 
@@ -25,7 +26,7 @@ try:
     t1 = threading.Thread(target=playSound)
     t1.start()
             
-    while mixer.get_busy():
+    while pygame.mixer.get_busy():
         print(".")
     
     print("Finished")
