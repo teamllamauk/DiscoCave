@@ -34,7 +34,7 @@ pwm2.start(0)
 pwm3.start(0)
 pwm4.start(0)
 
-bright=1                   # Set initial brightness to 1%
+bright=3                   # Set initial brightness to 1%
 
 
 #Main Loop
@@ -46,7 +46,7 @@ while True:
     
     print(bright)
     
-    pwm1.ChangeDutyCycle(bright)  # Apply new brightness
-    pwm2.ChangeDutyCycle(bright)
-    pwm3.ChangeDutyCycle(bright)
-    pwm4.ChangeDutyCycle(bright)
+    #pwm1.ChangeDutyCycle(bright)  # Apply new brightness
+    #pwm2.ChangeDutyCycle(bright)
+    #pwm3.ChangeDutyCycle(bright)
+    #pwm4.ChangeDutyCycle(bright)
