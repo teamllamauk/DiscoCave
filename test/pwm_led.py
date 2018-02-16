@@ -21,7 +21,7 @@ rGPIO.setup(led_white_pin,rGPIO.OUT)
 rGPIO.output(led_red_pin,rGPIO.LOW)
 rGPIO.output(led_green_pin,rGPIO.LOW)
 rGPIO.output(led_blue_pin,rGPIO.LOW)
-rGPIO.output(led_orange_pin,rGPIO.High)
+rGPIO.output(led_orange_pin,rGPIO.HIGH)
 rGPIO.output(led_white_pin,rGPIO.LOW)
 
 pwm1=GPIO.PWM(led_red_pin,1000)  # We need to activate PWM on LED1 so we can dim, use 1000 Hz 
