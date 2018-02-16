@@ -67,6 +67,8 @@ def playSound():
     btn_orange_flag = 0
 
 
+print("Ready")
+
 # Main loop
 while True:
     a = 1
