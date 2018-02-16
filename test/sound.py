@@ -39,6 +39,9 @@ def playSound():
     global btn_orange_flag
     btn_orange_flag = 1
     
+    volume = pygame.mixer.music.get_volume()
+    print(volume)
+    
     audio_rand = randint(1, 25)    # Pick a random number between 1 and 25.
     
     if audio_rand == 25 :
