@@ -28,11 +28,25 @@ pwm1=GPIO.PWM(led_red_pin,1000)  # We need to activate PWM on LED1 so we can dim
 pwm2=GPIO.PWM(led_green_pin,1000)
 pwm3=GPIO.PWM(led_blue_pin,1000)
 pwm4=GPIO.PWM(led_white_pin,1000)
+
 pwm1.start(0)              # Start PWM at 0% duty cycle (off)             
 pwm2.start(0)
 pwm3.start(0)
 pwm4.start(0)
+
 bright=1                   # Set initial brightness to 1%
 
+
+#Main Loop
 while True:
+    time.sleep(5)
+    bright = bright + 10
+    if bright> 100 :
+        bright = 100
     
+    print(bright)
+    
+    pwm1.ChangeDutyCycle(bright)  # Apply new brightness
+    pwm2.ChangeDutyCycle(bright)
+    pwm3.ChangeDutyCycle(bright)
+    pwm4.ChangeDutyCycle(bright)
