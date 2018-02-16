@@ -28,7 +28,9 @@ def btn_Callback(button_pin):
     if button_pin == btn_orange_pin:
         if btn_orange_flag == 0 :
             t1 = threading.Thread(target=playSound)
-            t1.start() 
+            t1.start()
+        else :
+            print("Already Playing")
     
 
 rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
@@ -41,8 +43,10 @@ def playSound():
     
     if audio_rand == 25 :
         sound_file = "/home/pi/Development/DiscoCave/audio/vegimal.mp3"
+        print("veg")
     else :
         sound_file = "/home/pi/Development/DiscoCave/audio/octoalert.mp3"
+        print("octo")
     
     print("Start")
     pygame.mixer.init()
