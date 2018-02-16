@@ -37,8 +37,10 @@ rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, boun
 
 def playSound():
     global btn_orange_flag
+    print("Start")
     btn_orange_flag = 1
     
+    pygame.mixer.init()
     volume = pygame.mixer.music.get_volume()
     print(volume)
     
@@ -50,11 +52,10 @@ def playSound():
     else :
         sound_file = "/home/pi/Development/DiscoCave/audio/octoalert.mp3"
         print("octo")
-    
-    print("Start")
-    pygame.mixer.init()
+        
     pygame.mixer.music.load(sound_file)
     pygame.mixer.music.play()
+    
     while pygame.mixer.music.get_busy() == True:
         rGPIO.output(led_orange_pin,rGPIO.HIGH)
         time.sleep(0.25)
