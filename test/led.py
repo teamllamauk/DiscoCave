@@ -14,7 +14,7 @@ strip.clear_strip()
 strip.set_pixel_rgb(12, 0xFF0000) # Red
 strip.set_pixel_rgb(24, 0xFFFFFF) # White
 strip.set_pixel_rgb(36, 0x00FF00) # Green
-strip.set_pixel_rgb(48, 0x0000FF) # Green
+strip.set_pixel_rgb(48, 0x0000FF) # Blue
 
 # Copy the buffer to the Strip (i.e. show the prepared pixels)
 strip.show()
