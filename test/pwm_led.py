@@ -29,13 +29,17 @@ pwm2=rGPIO.PWM(led_green_pin,1000)
 pwm3=rGPIO.PWM(led_blue_pin,1000)
 pwm4=rGPIO.PWM(led_white_pin,1000)
 
-pwm1.start(0)              # Start PWM at 0% duty cycle (off)             
-pwm2.start(0)
+pwm1.start(3)              # Start PWM at 0% duty cycle (off)             
+pwm2.start(3)
 pwm3.start(0)
 pwm4.start(0)
 
 bright=3                   # Set initial brightness to 1%
 
+#pwm1.ChangeDutyCycle(bright)  # Apply new brightness
+#pwm2.ChangeDutyCycle(bright)
+pwm3.ChangeDutyCycle(bright)
+pwm4.ChangeDutyCycle(bright)
 
 #Main Loop
 while True:
