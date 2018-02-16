@@ -6,6 +6,8 @@ import RPi.GPIO as rGPIO
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
+rGPIO.cleanup()
+
 led_red_pin = 8
 led_green_pin = 5
 led_blue_pin = 1
@@ -31,22 +33,22 @@ pwm4=rGPIO.PWM(led_white_pin,1000)
 
 pwm1.start(3)              # Start PWM at 0% duty cycle (off)             
 pwm2.start(3)
-pwm3.start(0)
-pwm4.start(0)
+pwm3.start(3)
+pwm4.start(3)
 
-bright=3                   # Set initial brightness to 1%
+bright=1                   # Set initial brightness to 1%
 
 #pwm1.ChangeDutyCycle(bright)  # Apply new brightness
 #pwm2.ChangeDutyCycle(bright)
-pwm3.ChangeDutyCycle(bright)
-pwm4.ChangeDutyCycle(bright)
+#pwm3.ChangeDutyCycle(bright)
+#pwm4.ChangeDutyCycle(bright)
 
 #Main Loop
 while True:
-    time.sleep(5)
-    bright = bright + 1
-    if bright> 35 :
-        bright = 35
+    #time.sleep(5)
+    #bright = bright + 1
+    #if bright> 35 :
+    #    bright = 35
     
     print(bright)
     
