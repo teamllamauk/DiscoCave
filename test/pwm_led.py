@@ -40,9 +40,9 @@ bright=1                   # Set initial brightness to 1%
 #Main Loop
 while True:
     time.sleep(5)
-    bright = bright + 10
-    if bright> 100 :
-        bright = 100
+    bright = bright + 1
+    if bright> 35 :
+        bright = 35
     
     print(bright)
     
