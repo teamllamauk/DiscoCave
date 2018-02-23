@@ -16,6 +16,10 @@ def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
     print("HSV: ", hsvColour)
     print("RGB: ", rgbColour)
+    print("R: ", rgbColour(0))
+    print("G: ", rgbColour(1))
+    print("B: ", rgbColour(2))
+    
     
 def solidColour(ledHSVColour):
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
@@ -29,7 +33,7 @@ def solidColour(ledHSVColour):
 count = 0
 while count < 360:
     solidColour(count)
-    time.sleep(2)
+    time.sleep(1)
     count = count + 10
     
 
