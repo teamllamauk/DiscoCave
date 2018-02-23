@@ -12,8 +12,11 @@ strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, or
 
 strip.clear_strip()
 
-global availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
-global selectedColourPos = 11
+global availableColours
+global selectedColourPos
+
+availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
+selectedColourPos = 11
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
