@@ -12,6 +12,9 @@ strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, or
 
 strip.clear_strip()
 
+global availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
+global selectedColourPos = 11
+
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
     #print("HSV: ", hsvColour)
@@ -32,36 +35,47 @@ def convertHSVtoRGB(hsvColour):
     return int(rgbHexColour, 16)
 
     
-def solidColour(ledHSVColour):
+def solidColour():
+    global availableColours
+    global selectedColourPos
+    
+    selectedColourPos = selectedColourPos + 1
+    if selectedColourPos > 11: selectedColourPos = 0
+    
+    ledHSVColour = availableColours[selectedColourPos]
+    
+    ledHSVColour = availableColours
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     strip.clear_strip()
     for x in range(0, 60):
         strip.set_pixel_rgb(x, ledRGBColour)
     strip.show()
    
+def slowRainbow():
+    count = 0
+    while count < 360:
+        solidColour(count)
+        time.sleep(1)
+        count = count + 30
+        
+def fastRainbow():
+    count = 0
+    while count < 360:
+        solidColour(count)
+        time.sleep(0.1)
+        count = count + 30
 
-
+print("Simulate pressing button to change colour")
 count = 0
-while count < 360:
-    solidColour(count)
-    time.sleep(0.5)
-    count = count + 30
-    
+while count < 20:
+    solidColour()
+    time.sleep(0.3)
 
-#solidColour(0xFF0000) #Red
-#time.sleep(2)
-#solidColour(0xFFA500) #Orange
-#time.sleep(2)
-#solidColour(0xFFFF00) #Yellow
-#time.sleep(2)
-#solidColour(0x00FF00) #Green
-#time.sleep(2)
-#solidColour(0x0000FF) #Blue
-#time.sleep(2)
-#solidColour(0x4B0082) #Indigo
-#time.sleep(2)
-#solidColour(0xEE82EE) #Violet
-#time.sleep(2)
+print("Fast Rainbow")
+fastRainbow()
+
+print("Slow Rainbow")
+slowRainbow()
 
 strip.clear_strip()
 strip.cleanup()
