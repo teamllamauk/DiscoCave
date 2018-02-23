@@ -76,6 +76,8 @@ def rotateLEDs():
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     
     for x in range(0, 60):
+        strip.clear_strip()
+        
         ledOne = x
         ledTwo = x + 1
         ledThree = x + 2
@@ -88,7 +90,7 @@ def rotateLEDs():
         strip.set_pixel_rgb(ledTwo + 1, ledRGBColour)
         strip.set_pixel_rgb(ledThree + 2, ledRGBColour, 5)
         strip.show()
-        time.sleep(0.2)
+        time.sleep(0.1)
         
     time.sleep(5)
 
