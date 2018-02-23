@@ -47,7 +47,6 @@ def solidColour():
     
     ledHSVColour = availableColours[selectedColourPos]
     
-    ledHSVColour = availableColours
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     strip.clear_strip()
     for x in range(0, 60):
@@ -83,13 +82,13 @@ while count < 20:
     time.sleep(0.3)
 
 print("Fast Rainbow")
-fastRainbow()
+#fastRainbow()
 
 print("Slow Rainbow")
-slowRainbow()
+#slowRainbow()
 
 print("Rotate")
-rotateLEDs()
+#rotateLEDs()
 
 strip.clear_strip()
 strip.cleanup()
