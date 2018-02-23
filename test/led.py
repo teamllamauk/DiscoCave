@@ -113,19 +113,19 @@ def simButton():
 
 
 print("Simulate pressing button to change colour")
-#simButton()
+simButton()
 
 strip.clear_strip()
 time.sleep(2)
 
 print("Fast Rainbow")
-#fastRainbow()
+fastRainbow()
 
 strip.clear_strip()
 time.sleep(2)
 
 print("Slow Rainbow")
-#slowRainbow()
+slowRainbow()
 
 strip.clear_strip()
 time.sleep(2)
