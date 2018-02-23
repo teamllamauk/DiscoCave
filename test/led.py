@@ -107,13 +107,13 @@ print("Simulate pressing button to change colour")
 #simButton()
 
 print("Fast Rainbow")
-#fastRainbow()
+fastRainbow()
 
 print("Slow Rainbow")
 #slowRainbow()
 
 print("Rotate")
-rotateLEDs()
+#rotateLEDs()
 
 strip.clear_strip()
 strip.cleanup()
