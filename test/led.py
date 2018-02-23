@@ -16,40 +16,22 @@ def solidColour(ledColour):
     for x in range(0, 60):
         strip.set_pixel_rgb(x, ledColour) 
     strip.show()
-
-
+   
     
-    
-solidColour(0xFF0000)
+solidColour(0xFF0000) #Red
 time.sleep(2)
-solidColour(0x00FF00)
+solidColour(0xFFA500) #Orange
 time.sleep(2)
-solidColour(0x0000FF)
+solidColour(0xFFFF00) #Yellow
+time.sleep(2)
+solidColour(0x00FF00) #Green
+time.sleep(2)
+solidColour(0x0000FF) #Blue
+time.sleep(2)
+solidColour(0x4B0082) #Indigo
+time.sleep(2)
+solidColour(0xEE82EE) #Violet
 time.sleep(2)
 
 strip.clear_strip()
-
-#strip.set_pixel_rgb(0, 0x00FF00) # Green
-#strip.show()
-#time.sleep(5)
-#strip.clear_strip()
-
-#strip.set_pixel_rgb(1, 0x0000FF) # Blue
-#strip.show()
-#time.sleep(5)
-#strip.clear_strip()
-
-#strip.set_pixel_rgb(2, 0xFFFFFF) # White
-#strip.show()
-#time.sleep(5)
-#strip.clear_strip()
-
-# Copy the buffer to the Strip (i.e. show the prepared pixels)
-
-
-# Wait a few Seconds, to check the result
-
-
-# Clear the strip and shut down
-
 strip.cleanup()
