@@ -75,24 +75,26 @@ def rotateLEDs():
     ledHSVColour = availableColours[selectedColourPos]    
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     
-    for x in range(0, 60):
-        strip.clear_strip()
+    count = 0
+    while count < 4:
+        for x in range(0, 60):
+            strip.clear_strip()
         
-        ledOne = x
-        ledTwo = x + 1
-        ledThree = x + 2
+            ledOne = x
+            ledTwo = x + 1
+            ledThree = x + 2
         
-        if ledTwo == 60: ledTwo = 0
-        if ledThree == 60: ledThree = 0
-        if ledThree == 61: ledThree = 1
+            if ledTwo == 60: ledTwo = 0
+            if ledThree == 60: ledThree = 0
+            if ledThree == 61: ledThree = 1
         
-        strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-        strip.set_pixel_rgb(ledTwo + 1, ledRGBColour)
-        strip.set_pixel_rgb(ledThree + 2, ledRGBColour, 5)
-        strip.show()
-        time.sleep(0.1)
-        
-    time.sleep(5)
+            strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
+            strip.set_pixel_rgb(ledTwo, ledRGBColour)
+            strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+            strip.show()
+            time.sleep(0.1)
+        count= count + 1        
+    strip.clear_strip()
 
 def simButton():
     count = 0
