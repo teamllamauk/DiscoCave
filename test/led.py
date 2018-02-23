@@ -14,7 +14,7 @@ strip.clear_strip()
 def solidColour(ledColour):
     strip.clear_strip()
     for x in range(0, 60):
-    strip.set_pixel_rgb(x, ledColour) 
+        strip.set_pixel_rgb(x, ledColour) 
     strip.show()
 
 
