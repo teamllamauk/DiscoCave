@@ -72,7 +72,7 @@ def rotateLEDs():
     strip.set_pixel_rgb(0, 0xFF0000)
     strip.set_pixel_rgb(1, 0xFF0000, 5)
     strip.set_pixel_rgb(2, 0xFF0000)
-    strip.rotate()
+    strip.rotate(10)
     time.sleep(5)
 
 def simButton():
