@@ -36,9 +36,10 @@ def convertHSVtoRGB(hsvColour):
 def solidColour(ledHSVColour):
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     strip.clear_strip()
-    for x in range(0, 60):
+    #for x in range(0, 60):
+    for x in range(0, 1):
         strip.set_pixel_rgb(x, ledRGBColour)
-    #strip.show()
+    strip.show()
    
 
 
