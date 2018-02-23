@@ -14,8 +14,7 @@ strip.clear_strip()
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
-    print("HSV: ", hsvColour)
-    print("RGB: ", rgbColour)
+    print("HSV: ", hsvColour)    
         
     hR = int(rgbColour[0] * 256)
     if hR == 256: hR = 255    
@@ -27,21 +26,18 @@ def convertHSVtoRGB(hsvColour):
     if hB == 256: hB = 255
     
     rgbIntColour = (hR, hG, hB)
-        
-    print("R: ", rgbIntColour[0])
-    print("G: ", rgbIntColour[1])
-    print("B: ", rgbIntColour[2])
     
     rgbHexColour = '#%02x%02x%02x' % rgbIntColour
     
     print(rgbHexColour)
+    return rgbHexColour
 
     
 def solidColour(ledHSVColour):
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
-    #strip.clear_strip()
-    #for x in range(0, 60):
-    #    strip.set_pixel_rgb(x, ledRGBColour) 
+    strip.clear_strip()
+    for x in range(0, 60):
+        strip.set_pixel_rgb(x, ledRGBColour)
     #strip.show()
    
 
