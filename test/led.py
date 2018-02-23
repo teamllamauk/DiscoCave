@@ -49,6 +49,7 @@ def solidColour():
     strip.clear_strip()
     for x in range(0, 60):
         strip.set_pixel_rgb(x, ledRGBColour)
+        #strip.set_pixel_rgb(LED ID, RGB Colour, Brightness ie 5 = 5%)
     strip.show()
    
 def slowRainbow():
@@ -64,6 +65,13 @@ def fastRainbow():
         solidColour(count)
         time.sleep(0.1)
         count = count + 30
+        
+def rotateLEDs():
+    strip.set_pixel_rgb(0, 0xFF0000)
+    strip.set_pixel_rgb(1, 0xFF0000, 5)
+    strip.set_pixel_rgb(2, 0xFF0000)
+    strip.rotate()
+    time.sleep(5)
 
 print("Simulate pressing button to change colour")
 count = 0
@@ -76,6 +84,9 @@ fastRainbow()
 
 print("Slow Rainbow")
 slowRainbow()
+
+print("Rotate")
+rotateLEDs()
 
 strip.clear_strip()
 strip.cleanup()
