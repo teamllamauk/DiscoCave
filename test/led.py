@@ -11,7 +11,7 @@ strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, or
 strip.clear_strip()
 
 # Prepare a few individual pixels
-for x in range(0, 59):
+for x in range(0, 60):
     strip.set_pixel_rgb(x, 0xFF0000) # Red
 strip.show()
 time.sleep(3)
