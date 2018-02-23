@@ -37,37 +37,44 @@ def convertHSVtoRGB(hsvColour):
     #print(rgbHexColour)
     return int(rgbHexColour, 16)
 
-    
-def solidColour():
+
+def buttonColour():
     global availableColours
     global selectedColourPos
     
     selectedColourPos = selectedColourPos + 1
     if selectedColourPos > 11: selectedColourPos = 0
-    
-    ledHSVColour = availableColours[selectedColourPos]    
+        
+    ledHSVColour = availableColours[selectedColourPos]
+    solidColour(ledHSVColour)
+
+
+def solidColour(ledHSVColour):
+            
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     
     strip.clear_strip()
     for x in range(0, 60):
-        strip.set_pixel_rgb(x, ledRGBColour)
-        #strip.set_pixel_rgb(LED ID, RGB Colour, Brightness ie 5 = 5%)
+        strip.set_pixel_rgb(x, ledRGBColour)        
     strip.show()
-   
+
+
 def slowRainbow():
     count = 0
     while count < 360:
         solidColour(count)
         time.sleep(1)
         count = count + 30
-        
+
+
 def fastRainbow():
     count = 0
     while count < 360:
         solidColour(count)
         time.sleep(0.1)
         count = count + 30
-        
+
+
 def rotateLEDs():
     global availableColours
     global selectedColourPos    
@@ -96,13 +103,15 @@ def rotateLEDs():
         count= count + 1        
     strip.clear_strip()
 
+
 def simButton():
     count = 0
     while count < 20:
-        solidColour()
+        buttonColour()
         time.sleep(0.3)
         count = count +1
-        
+
+
 print("Simulate pressing button to change colour")
 #simButton()
 
