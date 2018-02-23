@@ -72,7 +72,8 @@ def rotateLEDs():
     strip.set_pixel_rgb(0, 0xFF0000)
     strip.set_pixel_rgb(1, 0xFF0000, 5)
     strip.set_pixel_rgb(2, 0xFF0000)
-    strip.rotate(10)
+    #strip.rotate(10)
+    strip.show()
     time.sleep(5)
 
 def simButton():
@@ -83,13 +84,13 @@ def simButton():
         count = count +1
         
 print("Simulate pressing button to change colour")
-#simButton()
+simButton()
 
 print("Fast Rainbow")
-#fastRainbow()
+fastRainbow()
 
 print("Slow Rainbow")
-#slowRainbow()
+slowRainbow()
 
 print("Rotate")
 rotateLEDs()
