@@ -75,12 +75,15 @@ def rotateLEDs():
     strip.rotate()
     time.sleep(5)
 
+def simButton():
+    count = 0
+    while count < 20:
+        solidColour()
+        time.sleep(0.3)
+        count = count +1
+        
 print("Simulate pressing button to change colour")
-count = 0
-while count < 20:
-    solidColour()
-    time.sleep(0.3)
-    count = count +1
+#simButton()
 
 print("Fast Rainbow")
 #fastRainbow()
@@ -89,7 +92,7 @@ print("Slow Rainbow")
 #slowRainbow()
 
 print("Rotate")
-#rotateLEDs()
+rotateLEDs()
 
 strip.clear_strip()
 strip.cleanup()
