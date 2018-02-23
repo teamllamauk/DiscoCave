@@ -11,12 +11,21 @@ strip = apa102.APA102(num_led=60, global_brightness=5, mosi = 10, sclk = 11, ord
 
 strip.clear_strip()
 
-# Prepare a few individual pixels
-for x in range(0, 60):
-    strip.set_pixel_rgb(x, 0xFF0000) # Red
-strip.show()
-time.sleep(3)
-strip.clear_strip()
+def solidColour(ledColour):
+    strip.clear_strip()
+    for x in range(0, 60):
+    strip.set_pixel_rgb(x, ledColour) 
+    strip.show()
+
+
+    
+    
+solidColour("0xFF0000")
+time.sleep(2
+solidColour("0x00FF00")
+time.sleep(2
+solidColour("0x0000FF")
+time.sleep(2
 
 #strip.set_pixel_rgb(0, 0x00FF00) # Green
 #strip.show()
