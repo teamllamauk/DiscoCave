@@ -13,15 +13,15 @@ strip = apa102.APA102(num_led=60, global_brightness=5, mosi = 10, sclk = 11, ord
 strip.clear_strip()
 
 def convertHSVtoRGB(hsvColour):
-    rgbColour = colorsys.hsv_to_rgb(hsvColour,100,100)
+    rgbColour = colorsys.hsv_to_rgb(hsvColour,1,1)
     print("HSV: ", hsvColour)
     print("RGB: ", rgbColour)
     
 def solidColour(ledHSVColour):
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
-    strip.clear_strip()
-    for x in range(0, 60):
-        strip.set_pixel_rgb(x, ledRGBColour) 
+    #strip.clear_strip()
+    #for x in range(0, 60):
+    #    strip.set_pixel_rgb(x, ledRGBColour) 
     #strip.show()
    
 
