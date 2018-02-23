@@ -13,7 +13,7 @@ strip = apa102.APA102(num_led=60, global_brightness=5, mosi = 10, sclk = 11, ord
 strip.clear_strip()
 
 def convertHSVtoRGB(hsvColour):
-    rgbColour = colorsys.hsv_to_rgb(hsvColour,1,1)
+    rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
     print("HSV: ", hsvColour)
     print("RGB: ", rgbColour)
     
