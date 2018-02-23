@@ -21,23 +21,22 @@ def convertHSVtoRGB(hsvColour):
     print("B: ", rgbColour[2])    
     
     hR = int(rgbColour[0] * 256)
-    if hR == 256: hR = 255
-    rgbColour[0] = hR
+    if hR == 256: hR = 255    
         
     hG = int(rgbColour[1] * 256)
     if hG == 256: hG = 255
-    rgbColour[1] = hG
     
     hB = int(rgbColour[2] * 256)
     if hB == 256: hB = 255
-    rgbColour[2] = hB
+    
+    rgbIntColour(hR, hG, hB)
     
     print("Rx: ", hR)
     print("Gx: ", hG)
     print("Bx: ", hB)
-    print("R: ", rgbColour[0])
-    print("G: ", rgbColour[1])
-    print("B: ", rgbColour[2])
+    print("R: ", rgbIntColour[0])
+    print("G: ", rgbIntColour[1])
+    print("B: ", rgbIntColour[2])
 
     
 def solidColour(ledHSVColour):
