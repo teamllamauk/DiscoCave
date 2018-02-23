@@ -6,7 +6,7 @@ import time
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
 
-strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, order='rbg')
+strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, order='rgb')
 
 strip.clear_strip()
 
