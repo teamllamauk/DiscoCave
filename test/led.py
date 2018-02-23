@@ -20,12 +20,12 @@ def solidColour(ledColour):
 
     
     
-solidColour(0xFF0000)
-time.sleep(2
-solidColour(0x00FF00)
-time.sleep(2
-solidColour(0x0000FF)
-time.sleep(2
+solidColour('0xFF0000')
+time.sleep(2)
+solidColour('0x00FF00')
+time.sleep(2)
+solidColour('0x0000FF')
+time.sleep(2)
 
 #strip.set_pixel_rgb(0, 0x00FF00) # Green
 #strip.show()
