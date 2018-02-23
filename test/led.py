@@ -27,6 +27,8 @@ time.sleep(2)
 solidColour(0x0000FF)
 time.sleep(2)
 
+strip.clear_strip()
+
 #strip.set_pixel_rgb(0, 0x00FF00) # Green
 #strip.show()
 #time.sleep(5)
