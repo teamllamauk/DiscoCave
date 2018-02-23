@@ -80,6 +80,7 @@ count = 0
 while count < 20:
     solidColour()
     time.sleep(0.3)
+    count = count +1
 
 print("Fast Rainbow")
 #fastRainbow()
