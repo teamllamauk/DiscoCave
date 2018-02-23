@@ -12,16 +12,31 @@ strip.clear_strip()
 
 # Prepare a few individual pixels
 strip.set_pixel_rgb(12, 0xFF0000) # Red
-strip.set_pixel_rgb(24, 0xFFFFFF) # White
-strip.set_pixel_rgb(36, 0x00FF00) # Green
-strip.set_pixel_rgb(48, 0x0000FF) # Blue
+strip.show()
+time.sleep(5)
+strip.clear_strip()
+
+strip.set_pixel_rgb(12, 0xFFFFFF) # White
+strip.show()
+time.sleep(5)
+strip.clear_strip()
+
+strip.set_pixel_rgb(12, 0x00FF00) # Green
+strip.show()
+time.sleep(5)
+strip.clear_strip()
+
+strip.set_pixel_rgb(12, 0x0000FF) # Blue
+strip.show()
+time.sleep(5)
+strip.clear_strip()
 
 # Copy the buffer to the Strip (i.e. show the prepared pixels)
-strip.show()
+
 
 # Wait a few Seconds, to check the result
-time.sleep(20)
+
 
 # Clear the strip and shut down
-strip.clear_strip()
+
 strip.cleanup()
