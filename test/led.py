@@ -29,7 +29,7 @@ def convertHSVtoRGB(hsvColour):
     hB = int(rgbColour[2] * 256)
     if hB == 256: hB = 255
     
-    rgbIntColour(hR, hG, hB)
+    rgbIntColour = (hR, hG, hB)
     
     print("Rx: ", hR)
     print("Gx: ", hG)
