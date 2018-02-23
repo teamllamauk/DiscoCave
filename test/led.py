@@ -3,7 +3,6 @@
 import sys
 import time
 import colorsys
-from colormap import rgb2hex
 
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
@@ -33,7 +32,7 @@ def convertHSVtoRGB(hsvColour):
     print("G: ", rgbIntColour[1])
     print("B: ", rgbIntColour[2])
     
-    rgbHexColour = rgb2hex(rgbIntColour)
+    rgbHexColour = '#%02x%02x%02x' % rgbIntColour
     
     print(rgbHexColour)
 
