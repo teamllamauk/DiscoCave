@@ -75,7 +75,7 @@ def fastRainbow():
         count = count + 30
 
 
-def rotateLEDs():
+def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
         
@@ -99,7 +99,7 @@ def rotateLEDs():
             strip.set_pixel_rgb(ledTwo, ledRGBColour)
             strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
             strip.show()
-            time.sleep(0.1)
+            time.sleep(delay)
         count= count + 1        
     strip.clear_strip()
 
@@ -113,16 +113,30 @@ def simButton():
 
 
 print("Simulate pressing button to change colour")
-simButton()
+#simButton()
+
+strip.clear_strip()
+time.sleep(2)
 
 print("Fast Rainbow")
-fastRainbow()
+#fastRainbow()
+
+strip.clear_strip()
+time.sleep(2)
 
 print("Slow Rainbow")
-slowRainbow()
+#slowRainbow()
+
+strip.clear_strip()
+time.sleep(2)
 
 print("Rotate")
-rotateLEDs()
+rotateLEDs(0.1) #slow rotate
+
+strip.clear_strip()
+time.sleep(2)
+
+rotateLEDs(0.01) #fast rotate
 
 strip.clear_strip()
 strip.cleanup()
