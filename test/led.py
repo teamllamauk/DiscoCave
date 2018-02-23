@@ -45,9 +45,9 @@ def solidColour():
     selectedColourPos = selectedColourPos + 1
     if selectedColourPos > 11: selectedColourPos = 0
     
-    ledHSVColour = availableColours[selectedColourPos]
-    
+    ledHSVColour = availableColours[selectedColourPos]    
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
+    
     strip.clear_strip()
     for x in range(0, 60):
         strip.set_pixel_rgb(x, ledRGBColour)
@@ -69,11 +69,27 @@ def fastRainbow():
         count = count + 30
         
 def rotateLEDs():
-    strip.set_pixel_rgb(0, 0xFF0000, 5)
-    strip.set_pixel_rgb(1, 0xFF0000)
-    strip.set_pixel_rgb(2, 0xFF0000, 5)
-    #strip.rotate(10)
-    strip.show()
+    global availableColours
+    global selectedColourPos    
+        
+    ledHSVColour = availableColours[selectedColourPos]    
+    ledRGBColour = convertHSVtoRGB(ledHSVColour)
+    
+    for x in range(0, 60):
+        ledOne = x
+        ledTwo = x + 1
+        ledThree = x + 2
+        
+        if ledTwo == 60: ledTwo = 0
+        if ledThree == 60: ledThree = 0
+        if ledThree == 61: ledThree = 1
+        
+        strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
+        strip.set_pixel_rgb(ledTwo + 1, ledRGBColour)
+        strip.set_pixel_rgb(ledThree + 2, ledRGBColour, 5)
+        strip.show()
+        time.sleep(0.2)
+        
     time.sleep(5)
 
 def simButton():
