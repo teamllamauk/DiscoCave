@@ -16,17 +16,17 @@ strip.show()
 time.sleep(5)
 strip.clear_strip()
 
-strip.set_pixel_rgb(12, 0xFFFFFF) # White
-strip.show()
-time.sleep(5)
-strip.clear_strip()
-
 strip.set_pixel_rgb(12, 0x00FF00) # Green
 strip.show()
 time.sleep(5)
 strip.clear_strip()
 
 strip.set_pixel_rgb(12, 0x0000FF) # Blue
+strip.show()
+time.sleep(5)
+strip.clear_strip()
+
+strip.set_pixel_rgb(12, 0xFFFFFF) # White
 strip.show()
 time.sleep(5)
 strip.clear_strip()
