@@ -16,9 +16,9 @@ def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
     print("HSV: ", hsvColour)
     print("RGB: ", rgbColour)
-    print("R: ", rgbColour(0))
-    print("G: ", rgbColour(1))
-    print("B: ", rgbColour(2))
+    print("R: ", rgbColour[0])
+    print("G: ", rgbColour[1])
+    print("B: ", rgbColour[2])
     
     
 def solidColour(ledHSVColour):
