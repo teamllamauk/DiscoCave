@@ -45,5 +45,5 @@ while count < 11:
     time.sleep(1)
     count = count + 1
 endThread()
-time.sleep(5)
+#time.sleep(5)
 print("Thread Count: ", threading.activeCount())
