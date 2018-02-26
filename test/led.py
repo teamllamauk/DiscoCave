@@ -99,12 +99,15 @@ def rainbow(delay):
     global selectedColourPos
     global killThread  
     
+    start = time.time()
     while killThread == False:
-        print("    Rainbow")
-        solidColour(availableColours[selectedColourPos])
-        selectedColourPos = selectedColourPos + 1
-        if selectedColourPos > 11: selectedColourPos = 0
-        time.sleep(delay)
+        if time.time() - start >= delay:
+            print("    Rainbow")
+            solidColour(availableColours[selectedColourPos])
+            selectedColourPos = selectedColourPos + 1
+            if selectedColourPos > 11: selectedColourPos = 0
+            start = time.time()
+            #time.sleep(delay)
 
 
 def rotateLEDs(delay):
@@ -112,22 +115,28 @@ def rotateLEDs(delay):
     global selectedColourPos    
     global killThread
     
+    start = time.time()
     while killThread == False:
         print("    Rotate")
-        for x in range(0, 60):
-            ledOne = x
-            ledTwo = x + 1
-            ledThree = x + 2            
+        #for x in range(0, 60):
+        x = 0    
+        while x < 60:
+            if time.time() - start >= delay:
+                ledOne = x
+                ledTwo = x + 1
+                ledThree = x + 2            
             
-            ledHSVColour = availableColours[selectedColourPos]    
-            ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
             
-            strip.clear_strip()
-            strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-            if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-            if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
-            strip.show()
-            time.sleep(delay)
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.show()
+                x = x + 1
+                start = time.time()
+            #time.sleep(delay)
 
 
 def bounceLEDs(delay):    
