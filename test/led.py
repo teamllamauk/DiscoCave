@@ -14,9 +14,34 @@ strip.clear_strip()
 
 global availableColours
 global selectedColourPos
+global killThread
+killThread = False
 
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
 selectedColourPos = 0
+
+led_red_pin = 8
+led_green_pin = 5
+led_blue_pin = 1
+led_orange_pin = 24
+led_white_pin = 13
+
+rGPIO.setup(led_red_pin,rGPIO.OUT)
+rGPIO.setup(led_green_pin,rGPIO.OUT)
+rGPIO.setup(led_blue_pin,rGPIO.OUT)
+rGPIO.setup(led_orange_pin,rGPIO.OUT)
+rGPIO.setup(led_white_pin,rGPIO.OUT)
+
+rGPIO.output(led_red_pin,rGPIO.LOW)
+rGPIO.output(led_green_pin,rGPIO.LOW)
+rGPIO.output(led_blue_pin,rGPIO.LOW)
+rGPIO.output(led_orange_pin,rGPIO.LOW)
+rGPIO.output(led_white_pin,rGPIO.LOW)
+
+def endThread():
+    global killThread
+    killThread = True
+    print("Kill Thread")
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -62,8 +87,11 @@ def solidColour(ledHSVColour):
 def rainbow(delay):
     global availableColours
     global selectedColourPos
+    global killThread
     
-    while True:
+    killThread = True
+    
+    while killThread == False:
         solidColour(availableColours[selectedColourPos])
         selectedColourPos = selectedColourPos + 1
         if selectedColourPos > 11: selectedColourPos = 0
@@ -73,8 +101,11 @@ def rainbow(delay):
 def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
+    global killThread
     
-    while True:
+    killThread = True
+    
+    while killThread == False:
         for x in range(0, 60):
             ledOne = x
             ledTwo = x + 1
@@ -91,11 +122,14 @@ def rotateLEDs(delay):
             time.sleep(delay)
 
 
-def bounceLEDs(delay):
+def bounceLEDs(delay):    
     global availableColours
     global selectedColourPos
+    global killThread
     
-    while True:
+    killThread = True
+    
+    while killThread == False:
         for x in range(0, 60):
             ledOne = x
             ledTwo = x + 1
@@ -136,30 +170,35 @@ def simButton():
 
 
 print("Simulate pressing button to change colour")
-simButton()
-
+t1 = threading.Thread(target=simButton)
+t1.start()
+time.sleep(5)
+endThread()
 strip.clear_strip()
-time.sleep(2)
 
 print("Fast Rainbow")
-rainbow(1)
-
+t1 = threading.Thread(target=rainbow,(1))
+t1.start()
+time.sleep(5)
+endThread()
 strip.clear_strip()
-time.sleep(2)
 
-print("Slow Rainbow")
-rainbow(0.1)
+#strip.clear_strip()
+#time.sleep(2)
 
-strip.clear_strip()
-time.sleep(2)
+#print("Slow Rainbow")
+#rainbow(0.1)
 
-print("Rotate")
-rotateLEDs(0.1) #slow rotate
+#strip.clear_strip()
+#time.sleep(2)
 
-strip.clear_strip()
-time.sleep(2)
+#print("Rotate")
+#rotateLEDs(0.1) #slow rotate
 
-rotateLEDs(0.01) #fast rotate
+#strip.clear_strip()
+#time.sleep(2)
+
+#rotateLEDs(0.01) #fast rotate
 
 strip.clear_strip()
 strip.cleanup()
