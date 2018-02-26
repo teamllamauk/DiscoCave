@@ -3,6 +3,10 @@
 import sys
 import time
 import colorsys
+import RPi.GPIO as rGPIO
+
+rGPIO.setmode(rGPIO.BCM)
+rGPIO.setwarnings(False)
 
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
