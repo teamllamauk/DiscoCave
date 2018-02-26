@@ -27,12 +27,17 @@ def endThread():
 def printCount():
     global killThread
     count = 0
-    while killThread == False:
+    while killThread == False:        
         print(count)
         count = count + 1
 
 
-
+print("Thread Count: ", threading.activeCount())
 startThread()
-time.sleep(20)
+count = 0
+while count < 11:
+    print("Thread Count: ", threading.activeCount())
+    time.sleep(1)
+    count = count + 1
 endThread()
+print("Thread Count: ", threading.activeCount())
