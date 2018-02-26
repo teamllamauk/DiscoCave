@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
+# Imports
 import sys
 import time
+import threading
 import colorsys
 import RPi.GPIO as rGPIO
-
-rGPIO.setmode(rGPIO.BCM)
-rGPIO.setwarnings(False)
 
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
@@ -29,6 +28,9 @@ led_green_pin = 5
 led_blue_pin = 1
 led_orange_pin = 24
 led_white_pin = 13
+
+rGPIO.setmode(rGPIO.BCM)
+rGPIO.setwarnings(False)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 rGPIO.setup(led_green_pin,rGPIO.OUT)
