@@ -19,17 +19,22 @@ def startThread():
 
 
 def endThread():
-    global killThread
-    killThread = True
-    print("End Thread")
+    global killThread    
+    while threading.activeCount() > 1:
+        killThread = True
+        print("Ending...")
+    
+    killThread = False
+    print("Thread Stopped")
      
 
 def printCount():
     global killThread
     count = 0
     while killThread == False:        
-        #print(count)
+        print(count)
         count = count + 1
+        time.sleep(5)
 
 
 print("Thread Count: ", threading.activeCount())
