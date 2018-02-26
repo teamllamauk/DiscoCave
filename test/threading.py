@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 
+import RPi.GPIO as rGPIO
 import threading
 import time
+
+rGPIO.setmode(rGPIO.BCM)
+rGPIO.setwarnings(False)
+rGPIO.cleanup()
 
 global killThread
 killThread = False
