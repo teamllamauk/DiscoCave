@@ -15,13 +15,21 @@ strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, or
 
 strip.clear_strip()
 
-global availableColours
+global selectedMode
+global availableModes
+global brightness
+global availableBrightness
 global selectedColourPos
+global availableColours
 global killThread
-killThread = False
 
-availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
+selectedMode = 0
+availableModes = ("solidColour", "rainbow", "rotateLEDs", "bounceLEDs")
+brightness = 0
+availableBrightness = (5, 10, 15, 20)
 selectedColourPos = 0
+availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
+killThread = False
 
 btn_red_pin = 25
 btn_green_pin = 12
