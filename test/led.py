@@ -81,7 +81,7 @@ def buttonColour():
 
 
 def solidColour(ledHSVColour):
-    print("Solid Colour")        
+    print("    Solid Colour")        
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     
     #strip.clear_strip()
@@ -98,7 +98,7 @@ def rainbow(delay):
     killThread = True
     
     while killThread == False:
-        Print("Rainbow")
+        Print("    Rainbow")
         solidColour(availableColours[selectedColourPos])
         selectedColourPos = selectedColourPos + 1
         if selectedColourPos > 11: selectedColourPos = 0
@@ -113,7 +113,7 @@ def rotateLEDs(delay):
     killThread = True
     
     while killThread == False:
-        print("Rotate")
+        print("    Rotate")
         for x in range(0, 60):
             ledOne = x
             ledTwo = x + 1
@@ -138,7 +138,7 @@ def bounceLEDs(delay):
     killThread = True
     
     while killThread == False:
-        print("Bounce")
+        print("    Bounce")
         for x in range(0, 60):
             ledOne = x
             ledTwo = x + 1
