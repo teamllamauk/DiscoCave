@@ -32,11 +32,13 @@ def printCount():
     global killThread
     count = 0
     start = time.time()
-    while killThread == False:        
-        print(count)
-        count = count + 1
-        time.sleep(5)
-        print(time.time() - start)
+    while killThread == False:
+        if time.time() - start == 5:
+            print(count)
+            count = count + 1
+            start = time.time()
+            #time.sleep(5)
+        #print(time.time() - start)
 
 
 print("Thread Count: ", threading.activeCount())
