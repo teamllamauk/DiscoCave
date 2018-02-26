@@ -185,29 +185,34 @@ time.sleep(5)
 endThread()
 strip.clear_strip()
 
-print("Fast Rainbow")
+print("Slow Rainbow")
 t1 = threading.Thread(target=rainbow, args=(1,))
 t1.start()
 time.sleep(5)
 endThread()
 strip.clear_strip()
 
-#strip.clear_strip()
-#time.sleep(2)
+print("Fast Rainbow")
+t1 = threading.Thread(target=rainbow, args=(0.1,))
+t1.start()
+time.sleep(5)
+endThread()
+strip.clear_strip()
 
-#print("Slow Rainbow")
-#rainbow(0.1)
+print("slow rotate")
+t1 = threading.Thread(target=rotateLEDs, args=(0.1,))
+t1.start()
+time.sleep(5)
+endThread()
+strip.clear_strip()
 
-#strip.clear_strip()
-#time.sleep(2)
+print("fast rotate")
+t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
+t1.start()
+time.sleep(5)
+endThread()
+strip.clear_strip()
 
-#print("Rotate")
-#rotateLEDs(0.1) #slow rotate
-
-#strip.clear_strip()
-#time.sleep(2)
-
-#rotateLEDs(0.01) #fast rotate
 
 strip.clear_strip()
 strip.cleanup()
