@@ -177,7 +177,7 @@ endThread()
 strip.clear_strip()
 
 print("Fast Rainbow")
-t1 = threading.Thread(target=rainbow,(1))
+t1 = threading.Thread(target=rainbow, args=(1,))
 t1.start()
 time.sleep(5)
 endThread()
