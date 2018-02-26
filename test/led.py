@@ -98,7 +98,7 @@ def rainbow(delay):
     killThread = False
     
     while killThread == False:
-        Print("    Rainbow")
+        print("    Rainbow")
         solidColour(availableColours[selectedColourPos])
         selectedColourPos = selectedColourPos + 1
         if selectedColourPos > 11: selectedColourPos = 0
