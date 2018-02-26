@@ -33,7 +33,7 @@ def printCount():
     count = 0
     start = time.time()
     while killThread == False:
-        if time.time() - start == 5:
+        if time.time() - start >= 5:
             print(count)
             count = count + 1
             start = time.time()
