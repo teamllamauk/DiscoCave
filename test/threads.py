@@ -28,7 +28,7 @@ def printCount():
     global killThread
     count = 0
     while killThread == False:        
-        print(count)
+        #print(count)
         count = count + 1
 
 
