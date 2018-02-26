@@ -95,7 +95,7 @@ def rainbow(delay):
     global selectedColourPos
     global killThread
     
-    killThread = True
+    killThread = False
     
     while killThread == False:
         Print("    Rainbow")
@@ -110,7 +110,7 @@ def rotateLEDs(delay):
     global selectedColourPos    
     global killThread
     
-    killThread = True
+    killThread = False
     
     while killThread == False:
         print("    Rotate")
@@ -135,7 +135,7 @@ def bounceLEDs(delay):
     global selectedColourPos
     global killThread
     
-    killThread = True
+    killThread = False
     
     while killThread == False:
         print("    Bounce")
