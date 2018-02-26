@@ -45,9 +45,13 @@ rGPIO.output(led_orange_pin,rGPIO.LOW)
 rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def endThread():
-    global killThread
-    killThread = True
-    print("Kill Thread")
+    global killThread    
+    while threading.activeCount() > 1:
+        killThread = True
+        print("Ending...")
+    
+    killThread = False
+    print("Thread Stopped")
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -93,12 +97,7 @@ def solidColour(ledHSVColour):
 def rainbow(delay):
     global availableColours
     global selectedColourPos
-    global killThread
-    
-    while threading.activeCount() > 1:
-        killThread = True
-    
-    killThread = False
+    global killThread  
     
     while killThread == False:
         print("    Rainbow")
@@ -112,11 +111,6 @@ def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
     global killThread
-    
-    while threading.activeCount() > 1:
-        killThread = True
-    
-    killThread = False
     
     while killThread == False:
         print("    Rotate")
@@ -140,11 +134,6 @@ def bounceLEDs(delay):
     global availableColours
     global selectedColourPos
     global killThread
-    
-    while threading.activeCount() > 1:
-        killThread = True
-    
-    killThread = False
     
     while killThread == False:
         print("    Bounce")
