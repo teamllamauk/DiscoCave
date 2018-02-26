@@ -145,37 +145,45 @@ def bounceLEDs(delay):
     global selectedColourPos
     global killThread
     
+    start = time.time()
     while killThread == False:
         print("    Bounce")
-        for x in range(0, 60):
-            ledOne = x
-            ledTwo = x + 1
-            ledThree = x + 2            
+        x = 0    
+        while x < 60 and killThread == False:
+            if time.time() - start >= delay:
+                print("        Bounce F")
+                ledOne = x
+                ledTwo = x + 1
+                ledThree = x + 2            
             
-            ledHSVColour = availableColours[selectedColourPos]    
-            ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
             
-            strip.clear_strip()
-            strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-            if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-            if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
-            strip.show()
-            time.sleep(delay)
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.show()
+                x = x + 1
+                start = time.time()            
             
-        for x in range(60, 0, -1):
-            ledOne = x
-            ledTwo = x - 1
-            ledThree = x - 2            
+        while x > 0 and killThread == False:
+            if time.time() - start >= delay:
+                print("        Bounce R")
+                ledOne = x
+                ledTwo = x - 1
+                ledThree = x - 2            
             
-            ledHSVColour = availableColours[selectedColourPos]    
-            ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
             
-            strip.clear_strip()
-            strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-            if ledTwo < 0: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-            if ledThree < 0: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
-            strip.show()
-            time.sleep(delay)
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
+                if ledTwo < 0: strip.set_pixel_rgb(ledTwo, ledRGBColour)
+                if ledThree < 0: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.show()
+                x = x - 1
+                start = time.time()
 
 
 def simButton():
