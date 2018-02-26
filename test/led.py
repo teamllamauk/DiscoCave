@@ -120,8 +120,9 @@ def rotateLEDs(delay):
         print("    Rotate")
         #for x in range(0, 60):
         x = 0    
-        while x < 60:
+        while x < 60 and killThread == False:            
             if time.time() - start >= delay:
+                print("        rotating")
                 ledOne = x
                 ledTwo = x + 1
                 ledThree = x + 2            
