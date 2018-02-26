@@ -14,7 +14,7 @@ killThread = False
 
 def startThread():
     print("Start Thread")
-    t1 = threading.Thread(target=playSound)
+    t1 = threading.Thread(target=printCount)
     t1.start()
 
 
