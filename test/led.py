@@ -151,10 +151,11 @@ def bounceLEDs(delay):
         x = 0    
         while x < 60 and killThread == False:
             if time.time() - start >= delay:
-                print("        Bounce F")
+                #print("        Bounce F")
                 ledOne = x
                 ledTwo = x + 1
                 ledThree = x + 2            
+                print(ledOne, "-", ledTwo, "-", ledThree)
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
@@ -169,10 +170,11 @@ def bounceLEDs(delay):
             
         while x > 0 and killThread == False:
             if time.time() - start >= delay:
-                print("        Bounce R")
+                #print("        Bounce R")
                 ledOne = x
                 ledTwo = x - 1
                 ledThree = x - 2            
+                print(ledOne, "-", ledTwo, "-", ledThree)
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
