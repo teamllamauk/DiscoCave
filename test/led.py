@@ -155,7 +155,7 @@ def bounceLEDs(delay):
                 ledOne = x
                 ledTwo = x + 1
                 ledThree = x + 2            
-                print(ledOne, "-", ledTwo, "-", ledThree)
+                #print(ledOne, "-", ledTwo, "-", ledThree)
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
@@ -174,15 +174,15 @@ def bounceLEDs(delay):
                 ledOne = x
                 ledTwo = x - 1
                 ledThree = x - 2            
-                print(ledOne, "-", ledTwo, "-", ledThree)
+                #print(ledOne, "-", ledTwo, "-", ledThree)
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
             
                 strip.clear_strip()
                 strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-                if ledTwo < 0: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-                if ledThree < 0: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                if ledTwo > 0: strip.set_pixel_rgb(ledTwo, ledRGBColour)
+                if ledThree > 0: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
                 strip.show()
                 x = x - 1
                 start = time.time()
