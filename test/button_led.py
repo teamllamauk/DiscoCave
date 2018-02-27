@@ -11,10 +11,10 @@ sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
 
 strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, order='rgb')
-#strip = apa102.APA102(num_led=60, global_brightness=5, mosi = 10, sclk = 11, order='rgb')
 
 strip.clear_strip()
 
+global powerMode
 global selectedMode
 global availableModes
 global brightness
@@ -23,19 +23,22 @@ global selectedColourPos
 global availableColours
 global killThread
 
-selectedMode = 0
+powerMode = 0 # 0 is off, 1 is on
+selectedMode = 0 # index of availableModes
 availableModes = ("solidColour", "rainbow", "rotateLEDs", "bounceLEDs")
-brightness = 0
-availableBrightness = (5, 10, 15, 20)
-selectedColourPos = 0
+brightness = 3 # index of availableBrightness
+availableBrightness = (8, 12, 16, 20)
+selectedColourPos = 0 # index of availableColours
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
-killThread = False
+killThread = False # kills running threads when set to true
 
-btn_red_pin = 25
-btn_green_pin = 12
-btn_blue_pin = 7
-btn_orange_pin = 23
-btn_white_pin = 6
+# button order: w,g,b,r,o
+
+btn_red_pin = 25        # Light Brightness
+btn_green_pin = 12      # Light Mode
+btn_blue_pin = 7        # Light Colour
+btn_orange_pin = 23     # Activate Sounds
+btn_white_pin = 6       # Power On/Off
 
 led_red_pin = 8
 led_green_pin = 5
@@ -122,7 +125,7 @@ def solidColour(ledHSVColour):
     
     #strip.clear_strip()
     for x in range(0, 60):
-        strip.set_pixel_rgb(x, ledRGBColour)        
+        strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
     strip.show()
 
 
@@ -161,11 +164,13 @@ def rotateLEDs(delay):
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4                
             
                 strip.clear_strip()
-                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
                 strip.show()
                 x = x + 1
                 start = time.time()
@@ -190,11 +195,13 @@ def bounceLEDs(delay):
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4
             
                 strip.clear_strip()
-                strip.set_pixel_rgb(ledOne, ledRGBColour, 5) # TODO: USE MASTER BRIGHTNESS /4
-                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour) # TODO: USER MASTER BRIGHTNESS
-                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
                 strip.show()
                 x = x + 1
                 start = time.time()            
@@ -208,11 +215,13 @@ def bounceLEDs(delay):
             
                 ledHSVColour = availableColours[selectedColourPos]    
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4
             
                 strip.clear_strip()
-                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-                if ledTwo < 0: strip.set_pixel_rgb(ledTwo, ledRGBColour)
-                if ledThree < 0: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo > 0: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree > 0: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
                 strip.show()
                 x = x - 1
                 start = time.time()
