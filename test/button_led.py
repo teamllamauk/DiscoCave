@@ -76,60 +76,6 @@ rGPIO.output(led_blue_pin,rGPIO.LOW)
 rGPIO.output(led_orange_pin,rGPIO.LOW)
 rGPIO.output(led_white_pin,rGPIO.LOW)
 
-def btn_Callback(button_pin):
-    
-    global btn_red_flag
-    global btn_green_flag
-    global btn_blue_flag
-    global btn_orange_flag
-    global btn_white_flag
-    
-    print (button_pin)
-    if button_pin == btn_red_pin:
-        if btn_red_flag == 0:
-            rGPIO.output(led_red_pin,rGPIO.HIGH)
-            btn_red_flag = 1
-        else:
-            rGPIO.output(led_red_pin,rGPIO.LOW)
-            btn_red_flag = 0
-    elif button_pin == btn_green_pin:
-        if btn_green_flag == 0:
-            rGPIO.output(led_green_pin,rGPIO.HIGH)
-            btn_green_flag = 1
-        else:
-            rGPIO.output(led_green_pin,rGPIO.LOW)
-            btn_green_flag = 0
-    elif button_pin == btn_blue_pin:
-        if btn_blue_flag == 0:
-            rGPIO.output(led_blue_pin,rGPIO.HIGH)
-            btn_blue_flag = 1
-        else:
-            rGPIO.output(led_blue_pin,rGPIO.LOW)
-            btn_blue_flag = 0
-    elif button_pin == btn_orange_pin:
-        if btn_orange_flag == 0:
-            rGPIO.output(led_orange_pin,rGPIO.HIGH)
-            btn_orange_flag = 1
-        else:
-            rGPIO.output(led_orange_pin,rGPIO.LOW)
-            btn_orange_flag = 0
-    elif button_pin == btn_white_pin:
-        if btn_white_flag == 0:
-            rGPIO.output(led_white_pin,rGPIO.HIGH)
-            btn_white_flag = 1
-        else:
-            rGPIO.output(led_white_pin,rGPIO.LOW)
-            btn_white_flag = 0
-
-
-rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-
-
-
 def endThread():
     global killThread    
     while threading.activeCount() > 1:
@@ -246,8 +192,8 @@ def bounceLEDs(delay):
                 ledRGBColour = convertHSVtoRGB(ledHSVColour)
             
                 strip.clear_strip()
-                strip.set_pixel_rgb(ledOne, ledRGBColour, 5)
-                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour)
+                strip.set_pixel_rgb(ledOne, ledRGBColour, 5) # TODO: USE MASTER BRIGHTNESS /4
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour) # TODO: USER MASTER BRIGHTNESS
                 if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, 5)
                 strip.show()
                 x = x + 1
