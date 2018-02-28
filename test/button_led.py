@@ -71,9 +71,10 @@ rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def endThread():
     global killThread    
+    print(threading.activeCount())
     while threading.activeCount() > 1:
         killThread = True
-        print("Ending...")
+        #print("Ending...")
     
     killThread = False
     print("Thread Stopped")
@@ -343,6 +344,7 @@ rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bounc
 #strip.cleanup()
 
 def runMode():
+    print("run mode")
     endThread()
     if availableModes[selectedMode] == "solidColour":
         t1 = threading.Thread(target=buttonColour)
