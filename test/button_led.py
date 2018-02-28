@@ -237,8 +237,9 @@ def btn_Callback(button_pin):
     global availableColours
     global killThread
     
-    print (button_pin)
+    print("button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness
+        print("brightness", powerMode)
         if powerMode == 1:
             maxBrightness = len(availableBrightness) - 1
             brightness = brightness + 1
@@ -249,6 +250,7 @@ def btn_Callback(button_pin):
             #rGPIO.output(led_red_pin,rGPIO.LOW)
             
     elif button_pin == btn_green_pin:       # Green: Change Mode
+        print("change mode", powerMode)
         if powerMode == 1:
             maxSelectedMode = len(availableModes) - 1
             selectedMode = selectedMode + 1
@@ -261,6 +263,7 @@ def btn_Callback(button_pin):
             #rGPIO.output(led_green_pin,rGPIO.LOW)
                 
     elif button_pin == btn_blue_pin:        # Blue: Colour
+        print("colour", powerMode)
         if powerMode == 1:        
             maxSelectedColourPos = len(availableColours) - 1
             selectedColourPos = selectedColourPos + 1
@@ -276,6 +279,7 @@ def btn_Callback(button_pin):
         #rGPIO.output(led_orange_pin,rGPIO.LOW)
             
     elif button_pin == btn_white_pin:       # White: Power On/Off
+        print("o", powerMode)
         if powerMode == 0:        
             rGPIO.output(led_white_pin,rGPIO.HIGH)
             powerMode = 1
