@@ -354,7 +354,7 @@ def runMode():
         t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
     t1.start()
 
-while true:
+while True:
     if powerMode == 0 and prevPowerMode == 1:
         killThread = 1
         prevPowerMode = 0
