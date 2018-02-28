@@ -345,14 +345,14 @@ rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bounc
 def runMode():
     endThread()
     if availableModes[selectedMode] == "solidColour":
-            t1 = threading.Thread(target=buttonColour)
-        elif availableModes[selectedMode] == "rainbow":
-            t1 = threading.Thread(target=rainbow, args=(0.3,))
-        elif availableModes[selectedMode] == "rotateLEDs":
-            t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
-        elif availableModes[selectedMode] == "bounceLEDs":
-            t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
-        t1.start()
+        t1 = threading.Thread(target=buttonColour)
+    elif availableModes[selectedMode] == "rainbow":
+        t1 = threading.Thread(target=rainbow, args=(0.3,))
+    elif availableModes[selectedMode] == "rotateLEDs":
+        t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
+    elif availableModes[selectedMode] == "bounceLEDs":
+        t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
+    t1.start()
 
 while true:
     if powerMode == 0 and prevPowerMode == 1:
