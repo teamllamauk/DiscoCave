@@ -116,33 +116,30 @@ def solidColour():
     global selectedColourPos
     global availableBrightness
     global brightness
-    global killThread    
-               
-    ledHSVColour = availableColours[selectedColourPos]    
-    ledRGBColour = convertHSVtoRGB(ledHSVColour)
-    setSolidColour(ledRGBColour)
+    global killThread              
+    
+    setSolidColour()
     
     start = time.time()
     while killThread == False:
-        if time.time() - start >= 0.1:
-            ledHSVColour = availableColours[selectedColourPos]    
-            ledRGBColour = convertHSVtoRGB(ledHSVColour)
-            setSolidColour(ledRGBColour)
+        if time.time() - start >= 0.1:            
+            setSolidColour()
             start = time.time()
             
             
-
-def setSolidColour(ledRGBColour):
+def setSolidColour():
     global availableColours
     global selectedColourPos
     global availableBrightness
     global brightness
     global killThread
     
-        #strip.clear_strip()
-        for x in range(0, 60):
-            strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
-        strip.show()
+    ledHSVColour = availableColours[selectedColourPos]    
+    ledRGBColour = convertHSVtoRGB(ledHSVColour)
+    #strip.clear_strip()
+    for x in range(0, 60):
+        strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
+    strip.show()
 
 
 def rainbow(delay):
@@ -153,9 +150,7 @@ def rainbow(delay):
     start = time.time()
     while killThread == False:
         if time.time() - start >= delay:            
-            ledHSVColour = availableColours[selectedColourPos]    
-            ledRGBColour = convertHSVtoRGB(ledHSVColour)
-            setSolidColour(ledRGBColour)
+            setSolidColour()
             print("RGB Colour: ", ledRGBColour)
             selectedColourPos = selectedColourPos + 1
             if selectedColourPos > 11: selectedColourPos = 0
