@@ -132,7 +132,7 @@ def solidColour():
             
             
 
-def setSolidColour(ledRGBColour)
+def setSolidColour(ledRGBColour):
     global availableColours
     global selectedColourPos
     global availableBrightness
