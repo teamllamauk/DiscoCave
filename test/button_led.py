@@ -71,10 +71,10 @@ rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def endThread():
     global killThread    
-    print(threading.activeCount())
+    print("kill thread")
     while threading.activeCount() > 1:
         killThread = True
-        #print("Ending...")
+        print("Ending...")
     
     killThread = False
     print("Thread Stopped")
@@ -259,7 +259,7 @@ def btn_Callback(button_pin):
     global availableColours
     global killThread
     
-    # print("button pin", button_pin)
+    print("callback button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness
         print("brightness", powerMode)
         if powerMode == 1:
@@ -331,12 +331,15 @@ def runMode():
     t1.start()
 
 while True:
+    print("Thread count: ", threading.activeCount())
     if powerMode == 0 and prevPowerMode == 1:
+        print("Power off")
         killThread = 1
         prevPowerMode = 0
         strip.clear_strip()
         strip.cleanup()
         
     elif powerMode == 1 and prevPowerMode == 0:
+        print("Power on")
         prevPowerMode = 1       
         runMode()
