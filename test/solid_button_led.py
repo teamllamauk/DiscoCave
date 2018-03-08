@@ -160,15 +160,19 @@ def runMode():
     t1 = threading.Thread(target=solidColour)    
     t1.start()
 
-while True:    
+while True:
+    print(threading.activeCount())
     print("Starting - Wait 5 Seconds")
     time.sleep(5)
     
+    
     print("Power on")
+    print(threading.activeCount())
     rGPIO.output(led_white_pin,rGPIO.HIGH)
     runMode()
     time.sleep(5)
     
+    print(threading.activeCount())
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -177,6 +181,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
+    print(threading.activeCount())
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -185,6 +190,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
+    print(threading.activeCount())
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -193,6 +199,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
+    print(threading.activeCount())
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -200,11 +207,13 @@ while True:
     selectedColourPos = preSelectedColourPos
     print("Changed colour - Sleep 2")
     time.sleep(2)
-
+    
+    print(threading.activeCount())
     print("Power off")
     rGPIO.output(led_white_pin,rGPIO.LOW)
     killThread = 1
     strip.clear_strip()
     strip.cleanup()
-    time.sleep(5)
+    time.sleep(5)    
     print("End Program")
+    print(threading.activeCount())
