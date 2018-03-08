@@ -63,7 +63,7 @@ def endThread():
         print("Ending...")
     
     killThread = False
-    print("Thread Stopped")
+    print("Thread Stopped", killThread)
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -115,43 +115,6 @@ def setSolidColour():
     for x in range(0, 60):
         strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
     strip.show()
-
-
-
-#def btn_Callback(button_pin):
-    
-#    global powerMode
-#    global brightness
-#    global availableBrightness
-#    global selectedColourPos
-#    global availableColours
-#    global killThread
-    
-#    print("callback button pin", button_pin)
-#    if button_pin == btn_red_pin:           # Red: Brightness
-#        print("brightness", powerMode)
-#        if powerMode == 1:
-#            maxBrightness = len(availableBrightness) - 1
-#            brightness = brightness + 1
-#            if brightness > maxBrightness:
-#                maxBrightness = 0            
-                
-#    elif button_pin == btn_blue_pin:        # Blue: Colour
-#        print("colour", powerMode)
-#        if powerMode == 1:        
-#            maxSelectedColourPos = len(availableColours) - 1
-#            selectedColourPos = selectedColourPos + 1
-#            if selectedColourPos > maxSelectedColourPos:
-#                selectedColourPos = 0            
-            
-#    elif button_pin == btn_white_pin:       # White: Power On/Off
-#        print("o", powerMode)
-#        if powerMode == 0:        
-#            rGPIO.output(led_white_pin,rGPIO.HIGH)
-#            powerMode = 1
-#        else:
-#            rGPIO.output(led_white_pin,rGPIO.LOW)
-#            powerMode = 0
 
 
 def runMode():
@@ -211,7 +174,7 @@ while True:
     print(threading.activeCount())
     print("Power off")
     rGPIO.output(led_white_pin,rGPIO.LOW)
-    killThread = 1
+    endThread()
     strip.clear_strip()
     strip.cleanup()
     time.sleep(5)    
