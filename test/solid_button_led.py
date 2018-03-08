@@ -56,14 +56,13 @@ rGPIO.output(led_blue_pin,rGPIO.LOW)
 rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def endThread():
-    global killThread    
-    print("kill thread")
-    while threading.activeCount() > 1:
+    global killThread        
+    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
+    while threading.activeCount() > 1:        
         killThread = True
-        print("Ending...")
-    
+        print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
     killThread = False
-    print("Thread Stopped, ", killThread)
+    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -85,12 +84,7 @@ def convertHSVtoRGB(hsvColour):
     return int(rgbHexColour, 16)
 
 
-def solidColour():
-    print("    Solid Colour")
-    global availableColours
-    global selectedColourPos
-    global availableBrightness
-    global brightness
+def solidColour():    
     global killThread              
     
     setSolidColour()
