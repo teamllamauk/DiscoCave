@@ -114,7 +114,9 @@ def setSolidColour():
 def runMode():
     print("run mode")
     endThread()
-    t1 = threading.Thread(target=solidColour)    
+    print("run mode - Config Thread")
+    t1 = threading.Thread(target=solidColour) 
+    print("run mode - Start Thread")
     t1.start()
 
 while True:
