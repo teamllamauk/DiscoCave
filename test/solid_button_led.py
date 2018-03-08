@@ -62,6 +62,8 @@ def endThread():
         killThread = True
         print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
     killThread = False
+    strip.clear_strip()
+    strip.cleanup()
     print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
 
 def convertHSVtoRGB(hsvColour):
