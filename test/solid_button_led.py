@@ -63,7 +63,7 @@ def endThread():
         print("Ending...")
     
     killThread = False
-    print("Thread Stopped", killThread)
+    print("Thread Stopped, ", killThread)
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -124,18 +124,18 @@ def runMode():
     t1.start()
 
 while True:
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     print("Starting - Wait 5 Seconds")
     time.sleep(5)
     
     
     print("Power on")
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     rGPIO.output(led_white_pin,rGPIO.HIGH)
     runMode()
     time.sleep(5)
     
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -144,7 +144,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -153,7 +153,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -162,7 +162,7 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     maxSelectedColourPos = len(availableColours) - 1
     preSelectedColourPos = selectedColourPos + 1
     if preSelectedColourPos > maxSelectedColourPos:
@@ -171,12 +171,14 @@ while True:
     print("Changed colour - Sleep 2")
     time.sleep(2)
     
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     print("Power off")
     rGPIO.output(led_white_pin,rGPIO.LOW)
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     endThread()
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
     strip.clear_strip()
     strip.cleanup()
     time.sleep(5)    
-    print("End Program")
-    print(threading.activeCount())
+    print("Thread Count: ", threading.activeCount(), "KillThread = ", killThread)
+    print("Program End")
