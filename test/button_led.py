@@ -334,10 +334,10 @@ while True:
     print("Thread count: ", threading.activeCount())
     if powerMode == 0 and prevPowerMode == 1:
         print("Power off")
-        killThread = 1
+        endThread()
         prevPowerMode = 0
         strip.clear_strip()
-        strip.cleanup()
+        #strip.cleanup()
         
     elif powerMode == 1 and prevPowerMode == 0:
         print("Power on")
