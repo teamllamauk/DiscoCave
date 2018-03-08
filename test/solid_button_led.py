@@ -32,9 +32,9 @@ killThread = False # kills running threads when set to true
 
 # button order: w,g,b,r,o
 
-btn_red_pin = 25        # Light Brightness
-btn_blue_pin = 27        # Light Colour
-btn_white_pin = 6       # Power On/Off
+#btn_red_pin = 25        # Light Brightness
+#btn_blue_pin = 27        # Light Colour
+#btn_white_pin = 6       # Power On/Off
 
 led_red_pin = 17
 led_blue_pin = 22
@@ -43,9 +43,9 @@ led_white_pin = 13
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
-rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 rGPIO.setup(led_blue_pin,rGPIO.OUT)
@@ -118,45 +118,45 @@ def setSolidColour():
 
 
 
-def btn_Callback(button_pin):
+#def btn_Callback(button_pin):
     
-    global powerMode
-    global brightness
-    global availableBrightness
-    global selectedColourPos
-    global availableColours
-    global killThread
+#    global powerMode
+#    global brightness
+#    global availableBrightness
+#    global selectedColourPos
+#    global availableColours
+#    global killThread
     
-    print("callback button pin", button_pin)
-    if button_pin == btn_red_pin:           # Red: Brightness
-        print("brightness", powerMode)
-        if powerMode == 1:
-            maxBrightness = len(availableBrightness) - 1
-            brightness = brightness + 1
-            if brightness > maxBrightness:
-                maxBrightness = 0            
+#    print("callback button pin", button_pin)
+#    if button_pin == btn_red_pin:           # Red: Brightness
+#        print("brightness", powerMode)
+#        if powerMode == 1:
+#            maxBrightness = len(availableBrightness) - 1
+#            brightness = brightness + 1
+#            if brightness > maxBrightness:
+#                maxBrightness = 0            
                 
-    elif button_pin == btn_blue_pin:        # Blue: Colour
-        print("colour", powerMode)
-        if powerMode == 1:        
-            maxSelectedColourPos = len(availableColours) - 1
-            selectedColourPos = selectedColourPos + 1
-            if selectedColourPos > maxSelectedColourPos:
-                selectedColourPos = 0            
+#    elif button_pin == btn_blue_pin:        # Blue: Colour
+#        print("colour", powerMode)
+#        if powerMode == 1:        
+#            maxSelectedColourPos = len(availableColours) - 1
+#            selectedColourPos = selectedColourPos + 1
+#            if selectedColourPos > maxSelectedColourPos:
+#                selectedColourPos = 0            
             
-    elif button_pin == btn_white_pin:       # White: Power On/Off
-        print("o", powerMode)
-        if powerMode == 0:        
-            rGPIO.output(led_white_pin,rGPIO.HIGH)
-            powerMode = 1
-        else:
-            rGPIO.output(led_white_pin,rGPIO.LOW)
-            powerMode = 0
+#    elif button_pin == btn_white_pin:       # White: Power On/Off
+#        print("o", powerMode)
+#        if powerMode == 0:        
+#            rGPIO.output(led_white_pin,rGPIO.HIGH)
+#            powerMode = 1
+#        else:
+#            rGPIO.output(led_white_pin,rGPIO.LOW)
+#            powerMode = 0
 
 
-rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+#rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+#rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+#rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 def runMode():
     print("run mode")
@@ -166,14 +166,14 @@ def runMode():
 
 while True:
     print("Thread count: ", threading.activeCount())
-    if powerMode == 0 and prevPowerMode == 1:
-        print("Power off")
-        killThread = 1
-        prevPowerMode = 0
-        strip.clear_strip()
-        strip.cleanup()
+    #if powerMode == 0 and prevPowerMode == 1:
+    #    print("Power off")
+    #    killThread = 1
+    #    prevPowerMode = 0
+    #    strip.clear_strip()
+    #    strip.cleanup()
         
-    elif powerMode == 1 and prevPowerMode == 0:
-        print("Power on")
-        prevPowerMode = 1       
-        runMode()
+    #elif powerMode == 1 and prevPowerMode == 0:
+    #    print("Power on")
+    #    prevPowerMode = 1       
+    #    runMode()
