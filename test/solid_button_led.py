@@ -154,26 +154,57 @@ def setSolidColour():
 #            powerMode = 0
 
 
-#rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-#rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-#rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-
 def runMode():
     print("run mode")
     endThread()
     t1 = threading.Thread(target=solidColour)    
     t1.start()
 
-while True:
-    print("Thread count: ", threading.activeCount())
-    #if powerMode == 0 and prevPowerMode == 1:
-    #    print("Power off")
-    #    killThread = 1
-    #    prevPowerMode = 0
-    #    strip.clear_strip()
-    #    strip.cleanup()
-        
-    #elif powerMode == 1 and prevPowerMode == 0:
-    #    print("Power on")
-    #    prevPowerMode = 1       
-    #    runMode()
+while True:    
+    print("Starting - Wait 5 Seconds")
+    time.sleep(5)
+    
+    print("Power on")
+    rGPIO.output(led_white_pin,rGPIO.HIGH)
+    runMode()
+    time.sleep(5)
+    
+    maxSelectedColourPos = len(availableColours) - 1
+    preSelectedColourPos = selectedColourPos + 1
+    if preSelectedColourPos > maxSelectedColourPos:
+        preSelectedColourPos = 0            
+    selectedColourPos = preSelectedColourPos
+    print("Changed colour - Sleep 2")
+    time.sleep(2)
+    
+    maxSelectedColourPos = len(availableColours) - 1
+    preSelectedColourPos = selectedColourPos + 1
+    if preSelectedColourPos > maxSelectedColourPos:
+        preSelectedColourPos = 0            
+    selectedColourPos = preSelectedColourPos
+    print("Changed colour - Sleep 2")
+    time.sleep(2)
+    
+    maxSelectedColourPos = len(availableColours) - 1
+    preSelectedColourPos = selectedColourPos + 1
+    if preSelectedColourPos > maxSelectedColourPos:
+        preSelectedColourPos = 0            
+    selectedColourPos = preSelectedColourPos
+    print("Changed colour - Sleep 2")
+    time.sleep(2)
+    
+    maxSelectedColourPos = len(availableColours) - 1
+    preSelectedColourPos = selectedColourPos + 1
+    if preSelectedColourPos > maxSelectedColourPos:
+        preSelectedColourPos = 0            
+    selectedColourPos = preSelectedColourPos
+    print("Changed colour - Sleep 2")
+    time.sleep(2)
+
+    print("Power off")
+    rGPIO.output(led_white_pin,rGPIO.LOW)
+    killThread = 1
+    strip.clear_strip()
+    strip.cleanup()
+    time.sleep(5)
+    print("End Program")
