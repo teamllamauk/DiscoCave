@@ -5,16 +5,16 @@ import RPi.GPIO as rGPIO
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
-btn_red_pin = 25
-btn_green_pin = 12
+btn_red_pin = 23
+btn_green_pin = 17
 btn_blue_pin = 7
-btn_orange_pin = 23
-btn_white_pin = 6
+btn_orange_pin = 24
+btn_white_pin = 22
 
-led_red_pin = 8
-led_green_pin = 5
-led_blue_pin = 1
-led_orange_pin = 24
+led_red_pin = 5
+led_green_pin = 6
+led_blue_pin = 12
+led_orange_pin = 25
 led_white_pin = 13
 
 global btn_red_flag
@@ -29,11 +29,11 @@ btn_blue_flag = 0
 btn_orange_flag = 0
 btn_white_flag = 0
 
-rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_orange_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_red_pin, rGPIO.IN)
+rGPIO.setup(btn_green_pin, rGPIO.IN)
+rGPIO.setup(btn_blue_pin, rGPIO.IN)
+rGPIO.setup(btn_orange_pin, rGPIO.IN)
+rGPIO.setup(btn_white_pin, rGPIO.IN)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 rGPIO.setup(led_green_pin,rGPIO.OUT)
@@ -93,11 +93,11 @@ def btn_Callback(button_pin):
             btn_white_flag = 0
 
 
-rGPIO.add_event_detect(btn_red_pin, rGPIO.FALLING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_green_pin, rGPIO.FALLING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_blue_pin, rGPIO.FALLING, callback=btn_Callback, bouncetime=500)
-rGPIO.add_event_detect(btn_orange_pin, rGPIO.FALLING, callback=btn_Callback, bouncetime=1500)
-rGPIO.add_event_detect(btn_white_pin, rGPIO.FALLING, callback=btn_Callback, bouncetime=500)
+rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 # Main loop
 while True:
