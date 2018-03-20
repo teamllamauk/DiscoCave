@@ -29,11 +29,11 @@ btn_blue_flag = 0
 btn_orange_flag = 0
 btn_white_flag = 0
 
-rGPIO.setup(btn_red_pin, rGPIO.IN)
-#rGPIO.setup(btn_green_pin, rGPIO.IN)
-#rGPIO.setup(btn_blue_pin, rGPIO.IN)
-#rGPIO.setup(btn_orange_pin, rGPIO.IN)
-#rGPIO.setup(btn_white_pin, rGPIO.IN)
+rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_orange_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+#rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 #rGPIO.setup(led_green_pin,rGPIO.OUT)
