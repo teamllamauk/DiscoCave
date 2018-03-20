@@ -12,7 +12,7 @@ btn_orange_pin = 17
 btn_white_pin = 6
 
 led_red_pin = 22
-led_green_pin = 32
+led_green_pin = 12
 led_blue_pin = 25
 led_orange_pin = 27
 led_white_pin = 5
