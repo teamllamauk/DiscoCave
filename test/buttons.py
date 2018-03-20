@@ -5,17 +5,17 @@ import RPi.GPIO as rGPIO
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
 
-btn_red_pin = 16
-btn_green_pin = 33
-btn_blue_pin = 18
-btn_orange_pin = 11
-btn_white_pin = 31
+btn_red_pin = 23
+btn_green_pin = 13
+btn_blue_pin = 24
+btn_orange_pin = 17
+btn_white_pin = 6
 
-led_red_pin = 15
+led_red_pin = 22
 led_green_pin = 32
-led_blue_pin = 22
-led_orange_pin = 13
-led_white_pin = 29
+led_blue_pin = 25
+led_orange_pin = 27
+led_white_pin = 5
 
 global btn_red_flag
 global btn_green_flag
