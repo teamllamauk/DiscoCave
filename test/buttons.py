@@ -91,6 +91,7 @@ def btn_Callback(button_pin):
         else:
             rGPIO.output(led_white_pin,rGPIO.LOW)
             btn_white_flag = 0
+    time.sleep(0.05)
 
 
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
