@@ -30,22 +30,22 @@ btn_orange_flag = 0
 btn_white_flag = 0
 
 rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-#rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-#rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-#rGPIO.setup(btn_orange_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
-#rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_orange_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
-#rGPIO.setup(led_green_pin,rGPIO.OUT)
-#rGPIO.setup(led_blue_pin,rGPIO.OUT)
-#rGPIO.setup(led_orange_pin,rGPIO.OUT)
-#rGPIO.setup(led_white_pin,rGPIO.OUT)
+rGPIO.setup(led_green_pin,rGPIO.OUT)
+rGPIO.setup(led_blue_pin,rGPIO.OUT)
+rGPIO.setup(led_orange_pin,rGPIO.OUT)
+rGPIO.setup(led_white_pin,rGPIO.OUT)
 
 rGPIO.output(led_red_pin,rGPIO.LOW)
-#rGPIO.output(led_green_pin,rGPIO.LOW)
-#rGPIO.output(led_blue_pin,rGPIO.LOW)
-#rGPIO.output(led_orange_pin,rGPIO.LOW)
-#rGPIO.output(led_white_pin,rGPIO.LOW)
+rGPIO.output(led_green_pin,rGPIO.LOW)
+rGPIO.output(led_blue_pin,rGPIO.LOW)
+rGPIO.output(led_orange_pin,rGPIO.LOW)
+rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def btn_Callback(button_pin):
     
@@ -94,10 +94,10 @@ def btn_Callback(button_pin):
 
 
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
-#rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-#rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-#rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
-#rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
+rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
+rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
+rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=500)
 
 # Main loop
 while True:
