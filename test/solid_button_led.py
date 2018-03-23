@@ -169,7 +169,7 @@ def btn_Callback(button_pin):
     elif button_pin == btn_white_pin:       # White: Power On/Off
          if time.time() - bounceWhite >= 0.5:
             bounceWhite = time.time()
-            print("o", powerMode)
+            #print("o", powerMode)
             if powerMode == 0:        
                 rGPIO.output(led_white_pin,rGPIO.HIGH)
                 powerMode = 1
