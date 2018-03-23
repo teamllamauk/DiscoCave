@@ -21,6 +21,9 @@ global availableBrightness
 global selectedColourPos
 global availableColours
 global killThread
+global bounceRed
+global bounceBlue
+global bounceWhite
 
 prevPowerMode = 0
 powerMode = 0 # 0 is off, 1 is on
@@ -29,6 +32,9 @@ availableBrightness = (8, 12, 16, 20)
 selectedColourPos = 0 # index of availableColours
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
 killThread = False # kills running threads when set to true
+bounceRed = time.time()
+bounceBlue = time.time()
+bounceWhite = time.time()
 
 # button order: w,g,b,r,o
 
@@ -126,19 +132,26 @@ def btn_Callback(button_pin):
     global selectedColourPos
     global availableColours
     global killThread
+    global bounceRed
+    global bounceBlue
+    global bounceWhite
     
-    print("callback button pin", button_pin)
+    
+    #print("callback button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness
-        print("brightness", powerMode)
-        if powerMode == 1:
-            maxBrightness = len(availableBrightness) - 1
-            brightness = brightness + 1
-            if brightness > maxBrightness:
-                brightness = 0            
+        
+        if time.time() - bounceRed >= 0.5:
+            bounceRed =  = time.time()
+            print("brightness", powerMode)
+            if powerMode == 1:
+                maxBrightness = len(availableBrightness) - 1
+                brightness = brightness + 1
+                if brightness > maxBrightness:
+                    brightness = 0            
                 
-            print("brightness : ", brightness)
-            #rGPIO.output(led_red_pin,rGPIO.HIGH)            
-            #rGPIO.output(led_red_pin,rGPIO.LOW)          
+                print("brightness : ", brightness)
+                #rGPIO.output(led_red_pin,rGPIO.HIGH)            
+                #rGPIO.output(led_red_pin,rGPIO.LOW)          
     
     elif button_pin == btn_blue_pin:        # Blue: Colour
         print("colour", powerMode)
