@@ -66,14 +66,14 @@ rGPIO.output(led_white_pin,rGPIO.LOW)
 
 def endThread():
     global killThread        
-    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
+    #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
-        print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
+        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
     killThread = False
     strip.clear_strip()
     #strip.cleanup()
-    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
+    #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -141,7 +141,7 @@ def btn_Callback(button_pin):
     if button_pin == btn_red_pin:           # Red: Brightness        
         if time.time() - bounceRed >= 0.5:
             bounceRed = time.time()
-            print("brightness", powerMode)
+            #print("brightness", powerMode)
             if powerMode == 1:
                 maxBrightness = len(availableBrightness) - 1
                 brightness = brightness + 1
@@ -155,14 +155,14 @@ def btn_Callback(button_pin):
     elif button_pin == btn_blue_pin:        # Blue: Colour
         if time.time() - bounceBlue >= 0.5:
             bounceBlue = time.time()
-            print("colour", powerMode)
+            #print("colour", powerMode)
             if powerMode == 1:        
                 maxSelectedColourPos = len(availableColours) - 1
                 selectedColourPos = selectedColourPos + 1
                 if selectedColourPos > maxSelectedColourPos:
                     selectedColourPos = 0            
             
-            print("Colour Pos : ", selectedColourPos)
+                print("Colour Pos : ", selectedColourPos)
             #rGPIO.output(led_blue_pin,rGPIO.HIGH)            
             #rGPIO.output(led_blue_pin,rGPIO.LOW)
             
@@ -183,7 +183,7 @@ rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bounce
 rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 def runMode():
-    print("run mode")
+    #print("run mode")
     endThread()
     #if availableModes[selectedMode] == "solidColour":
     t1 = threading.Thread(target=solidColour)
