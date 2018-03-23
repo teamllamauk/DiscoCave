@@ -147,6 +147,7 @@ def btn_Callback(button_pin):
             if selectedColourPos > maxSelectedColourPos:
                 selectedColourPos = 0            
             
+            print("Colour Pos : ", selectedColourPos)
             #rGPIO.output(led_blue_pin,rGPIO.HIGH)            
             #rGPIO.output(led_blue_pin,rGPIO.LOW)
             
