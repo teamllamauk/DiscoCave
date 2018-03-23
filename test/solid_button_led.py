@@ -178,7 +178,7 @@ def runMode():
     t1.start()
 
 while True:
-    print("Thread count: ", threading.activeCount())
+    #print("Thread count: ", threading.activeCount())
     if powerMode == 0 and prevPowerMode == 1:
         print("Power off")
         endThread()
