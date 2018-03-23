@@ -138,8 +138,7 @@ def btn_Callback(button_pin):
     
     
     #print("callback button pin", button_pin)
-    if button_pin == btn_red_pin:           # Red: Brightness
-        
+    if button_pin == btn_red_pin:           # Red: Brightness        
         if time.time() - bounceRed >= 0.5:
             bounceRed = time.time()
             print("brightness", powerMode)
@@ -154,25 +153,29 @@ def btn_Callback(button_pin):
                 #rGPIO.output(led_red_pin,rGPIO.LOW)          
     
     elif button_pin == btn_blue_pin:        # Blue: Colour
-        print("colour", powerMode)
-        if powerMode == 1:        
-            maxSelectedColourPos = len(availableColours) - 1
-            selectedColourPos = selectedColourPos + 1
-            if selectedColourPos > maxSelectedColourPos:
-                selectedColourPos = 0            
+        if time.time() - bounceBlue >= 0.5:
+            bounceBlue = time.time()
+            print("colour", powerMode)
+            if powerMode == 1:        
+                maxSelectedColourPos = len(availableColours) - 1
+                selectedColourPos = selectedColourPos + 1
+                if selectedColourPos > maxSelectedColourPos:
+                    selectedColourPos = 0            
             
             print("Colour Pos : ", selectedColourPos)
             #rGPIO.output(led_blue_pin,rGPIO.HIGH)            
             #rGPIO.output(led_blue_pin,rGPIO.LOW)
             
     elif button_pin == btn_white_pin:       # White: Power On/Off
-        print("o", powerMode)
-        if powerMode == 0:        
-            rGPIO.output(led_white_pin,rGPIO.HIGH)
-            powerMode = 1
-        else:
-            rGPIO.output(led_white_pin,rGPIO.LOW)
-            powerMode = 0
+         if time.time() - bounceWhite >= 0.5:
+            bounceWhite = time.time()
+            print("o", powerMode)
+            if powerMode == 0:        
+                rGPIO.output(led_white_pin,rGPIO.HIGH)
+                powerMode = 1
+            else:
+                rGPIO.output(led_white_pin,rGPIO.LOW)
+                powerMode = 0
 
 
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
