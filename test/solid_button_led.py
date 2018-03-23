@@ -141,7 +141,7 @@ def btn_Callback(button_pin):
     if button_pin == btn_red_pin:           # Red: Brightness
         
         if time.time() - bounceRed >= 0.5:
-            bounceRed =  = time.time()
+            bounceRed = time.time()
             print("brightness", powerMode)
             if powerMode == 1:
                 maxBrightness = len(availableBrightness) - 1
