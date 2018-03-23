@@ -134,8 +134,9 @@ def btn_Callback(button_pin):
             maxBrightness = len(availableBrightness) - 1
             brightness = brightness + 1
             if brightness > maxBrightness:
-                maxBrightness = 0            
+                brightness = 0            
                 
+            print("brightness : ", brightness)
             #rGPIO.output(led_red_pin,rGPIO.HIGH)            
             #rGPIO.output(led_red_pin,rGPIO.LOW)          
     
