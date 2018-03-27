@@ -188,12 +188,11 @@ def btn_Callback(button_pin):
         if time.time() - bounceGreen >= 0.5:
             bounceGreen = time.time()
             if powerMode == 1:
-            maxSelectedMode = len(availableModes) - 1
-            selectedMode = selectedMode + 1
-            if selectedMode > maxSelectedMode:
-                selectedMode = 0
-            
-            runMode()            
+                maxSelectedMode = len(availableModes) - 1
+                selectedMode = selectedMode + 1
+                if selectedMode > maxSelectedMode:
+                    selectedMode = 0            
+                runMode()            
         
     elif button_pin == btn_white_pin:       # White: Power On/Off
          if time.time() - bounceWhite >= 0.5:
