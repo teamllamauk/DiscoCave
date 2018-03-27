@@ -140,8 +140,7 @@ def rainbow(delay):
     start = time.time()
     while killThread == False:
         if time.time() - start >= delay:            
-            setSolidColour()
-            print("RGB Colour: ", ledRGBColour)
+            setSolidColour()            
             selectedColourPos = selectedColourPos + 1
             if selectedColourPos > 11: selectedColourPos = 0
             start = time.time()
