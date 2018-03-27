@@ -16,6 +16,8 @@ strip.clear_strip()
 
 global prevPowerMode
 global powerMode
+global selectedMode
+global availableModes
 global brightness
 global availableBrightness
 global selectedColourPos
@@ -28,6 +30,8 @@ global bounceGreen
 
 prevPowerMode = 0
 powerMode = 0 # 0 is off, 1 is on
+selectedMode = 0 # index of availableModes
+availableModes = ("solidColour", "rainbow", "rotateLEDs", "bounceLEDs")
 brightness = 3 # index of availableBrightness
 availableBrightness = (7, 14, 20)
 selectedColourPos = 0 # index of availableColours
