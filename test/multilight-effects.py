@@ -24,6 +24,7 @@ global killThread
 global bounceRed
 global bounceBlue
 global bounceWhite
+global bounceGreen
 
 prevPowerMode = 0
 powerMode = 0 # 0 is off, 1 is on
@@ -35,6 +36,7 @@ killThread = False # kills running threads when set to true
 bounceRed = time.time()
 bounceBlue = time.time()
 bounceWhite = time.time()
+bounceGreen = time.time()
 
 # button order: w,g,b,r,o
 
@@ -44,10 +46,12 @@ bounceWhite = time.time()
 btn_red_pin = 23
 btn_blue_pin = 24
 btn_white_pin = 6
+btn_green_pin = 13
 
 led_red_pin = 22
 led_blue_pin = 25
 led_white_pin = 5
+led_green_pin = 12
 
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
@@ -55,14 +59,17 @@ rGPIO.setwarnings(False)
 rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 rGPIO.setup(led_blue_pin,rGPIO.OUT)
 rGPIO.setup(led_white_pin,rGPIO.OUT)
+rGPIO.setup(led_green_pin,rGPIO.OUT)
 
 rGPIO.output(led_red_pin,rGPIO.LOW)
 rGPIO.output(led_blue_pin,rGPIO.LOW)
 rGPIO.output(led_white_pin,rGPIO.LOW)
+rGPIO.output(led_green_pin,rGPIO.LOW)
 
 def endThread():
     global killThread        
@@ -121,6 +128,19 @@ def setSolidColour():
         strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
     strip.show()
 
+def rainbow(delay):
+    global availableColours
+    global selectedColourPos
+    global killThread  
+    print("Rainbow")
+    start = time.time()
+    while killThread == False:
+        if time.time() - start >= delay:            
+            setSolidColour()
+            print("RGB Colour: ", ledRGBColour)
+            selectedColourPos = selectedColourPos + 1
+            if selectedColourPos > 11: selectedColourPos = 0
+            start = time.time()
 
 def btn_Callback(button_pin):
     
@@ -135,7 +155,7 @@ def btn_Callback(button_pin):
     global bounceRed
     global bounceBlue
     global bounceWhite
-    
+    global bounceGreen
     
     #print("callback button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness        
@@ -165,7 +185,17 @@ def btn_Callback(button_pin):
                 print("Colour Pos : ", selectedColourPos)
             #rGPIO.output(led_blue_pin,rGPIO.HIGH)            
             #rGPIO.output(led_blue_pin,rGPIO.LOW)
+    elif button_pin == btn_green_pin:       # Green: Change Colour Mode
+        if time.time() - bounceGreen >= 0.5:
+            bounceGreen = time.time()
+            if powerMode == 1:
+            maxSelectedMode = len(availableModes) - 1
+            selectedMode = selectedMode + 1
+            if selectedMode > maxSelectedMode:
+                selectedMode = 0
             
+            runMode()            
+        
     elif button_pin == btn_white_pin:       # White: Power On/Off
          if time.time() - bounceWhite >= 0.5:
             bounceWhite = time.time()
@@ -185,10 +215,10 @@ rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bounc
 def runMode():
     #print("run mode")
     endThread()
-    #if availableModes[selectedMode] == "solidColour":
-    t1 = threading.Thread(target=solidColour)
-    #elif availableModes[selectedMode] == "rainbow":
-    #    t1 = threading.Thread(target=rainbow, args=(0.3,))
+    if availableModes[selectedMode] == "solidColour":
+        t1 = threading.Thread(target=solidColour)
+    elif availableModes[selectedMode] == "rainbow":
+        t1 = threading.Thread(target=rainbow, args=(0.3,))
     #elif availableModes[selectedMode] == "rotateLEDs":
     #    t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
     #elif availableModes[selectedMode] == "bounceLEDs":
