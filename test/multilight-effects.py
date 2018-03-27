@@ -29,7 +29,7 @@ global bounceGreen
 prevPowerMode = 0
 powerMode = 0 # 0 is off, 1 is on
 brightness = 3 # index of availableBrightness
-availableBrightness = (8, 12, 16, 20)
+availableBrightness = (7, 14, 20)
 selectedColourPos = 0 # index of availableColours
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
 killThread = False # kills running threads when set to true
@@ -142,8 +142,7 @@ def rainbow(delay):
             if selectedColourPos > 11: selectedColourPos = 0
             start = time.time()
 
-def btn_Callback(button_pin):
-    
+def btn_Callback(button_pin):    
     global powerMode
     global selectedMode
     global availableModes
@@ -211,6 +210,7 @@ def btn_Callback(button_pin):
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 def runMode():
     #print("run mode")
