@@ -253,13 +253,14 @@ def runMode():
         print("2")
         t1 = threading.Thread(target=solidColour)
     elif availableModes[selectedMode] == "rainbow":
-        print("2")
+        print("3")
         t1 = threading.Thread(target=rainbow, args=(0.3,))
     elif availableModes[selectedMode] == "rotateLEDs":
         print("elif rotate")
         t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
     #elif availableModes[selectedMode] == "bounceLEDs":
     #    t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
+    print("4")
     t1.start()
 
 while True:
