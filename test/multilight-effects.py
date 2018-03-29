@@ -145,6 +145,36 @@ def rainbow(delay):
             if selectedColourPos > 11: selectedColourPos = 0
             start = time.time()
 
+def rotateLEDs(delay):
+    global availableColours
+    global selectedColourPos    
+    global killThread
+    
+    start = time.time()
+    while killThread == False:
+        print("Rotate")
+        #for x in range(0, 60):
+        x = 0    
+        while x < 60 and killThread == False:            
+            if time.time() - start >= delay:
+                print("        rotating")
+                ledOne = x
+                ledTwo = x + 1
+                ledThree = x + 2            
+            
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4                
+            
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
+                strip.show()
+                x = x + 1
+                start = time.time()
+            
 def btn_Callback(button_pin):    
     global powerMode
     global selectedMode
@@ -221,8 +251,8 @@ def runMode():
         t1 = threading.Thread(target=solidColour)
     elif availableModes[selectedMode] == "rainbow":
         t1 = threading.Thread(target=rainbow, args=(0.3,))
-    #elif availableModes[selectedMode] == "rotateLEDs":
-    #    t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
+    elif availableModes[selectedMode] == "rotateLEDs":
+        t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
     #elif availableModes[selectedMode] == "bounceLEDs":
     #    t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
     t1.start()
