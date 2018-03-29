@@ -77,7 +77,7 @@ rGPIO.output(led_green_pin,rGPIO.LOW)
 
 def endThread():
     global killThread        
-    #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
+    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
         #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
