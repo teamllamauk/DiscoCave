@@ -245,7 +245,7 @@ rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bounc
 rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 def runMode():
-    #print("run mode")
+    print("run mode , ", availableModes[selectedMode])
     endThread()
     if availableModes[selectedMode] == "solidColour":
         t1 = threading.Thread(target=solidColour)
