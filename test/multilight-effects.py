@@ -248,9 +248,12 @@ rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bounc
 def runMode():
     print("run mode , ", availableModes[selectedMode])
     endThread()
+    print("1")
     if availableModes[selectedMode] == "solidColour":
+        print("2")
         t1 = threading.Thread(target=solidColour)
     elif availableModes[selectedMode] == "rainbow":
+        print("2")
         t1 = threading.Thread(target=rainbow, args=(0.3,))
     elif availableModes[selectedMode] == "rotateLEDs":
         print("elif rotate")
