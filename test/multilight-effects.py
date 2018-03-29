@@ -108,7 +108,7 @@ def convertHSVtoRGB(hsvColour):
 
 def solidColour():    
     global killThread              
-    
+    print("Solid")
     setSolidColour()
     
     start = time.time()
@@ -149,7 +149,7 @@ def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
     global killThread
-    
+    print("Rotate")
     start = time.time()
     while killThread == False:
         print("Rotate")
