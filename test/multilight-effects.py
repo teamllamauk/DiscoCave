@@ -145,6 +145,7 @@ def rainbow(delay):
             if selectedColourPos > 11: selectedColourPos = 0
             start = time.time()
 
+
 def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
@@ -252,6 +253,7 @@ def runMode():
     elif availableModes[selectedMode] == "rainbow":
         t1 = threading.Thread(target=rainbow, args=(0.3,))
     elif availableModes[selectedMode] == "rotateLEDs":
+        print("elif rotate")
         t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
     #elif availableModes[selectedMode] == "bounceLEDs":
     #    t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
