@@ -80,7 +80,7 @@ def endThread():
     print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
-        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
+        print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
     killThread = False
     strip.clear_strip()
     #strip.cleanup()
@@ -109,21 +109,20 @@ def convertHSVtoRGB(hsvColour):
 def solidColour():    
     global killThread              
     print("Solid")
-    setSolidColour()
-    
+    setSolidColour()    
     start = time.time()
     while killThread == False:
         if time.time() - start >= 0.1:            
             setSolidColour()
             start = time.time()
+    print("end solid")
             
             
 def setSolidColour():
     global availableColours
     global selectedColourPos
     global availableBrightness
-    global brightness
-    global killThread
+    global brightness    
     
     ledHSVColour = availableColours[selectedColourPos]    
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
@@ -249,22 +248,23 @@ def runMode():
     print("run mode , ", availableModes[selectedMode])
     endThread()
     print("run 1")
-    if availableModes[selectedMode] == "solidColour":
-        print("run 2")
-        t1 = threading.Thread(target=solidColour)
-        t1.start()
-    elif availableModes[selectedMode] == "rainbow":
-        print("run 3")
-        #t1 = threading.Thread(target=rainbow, args=(0.3,))
-        #t1.start()
-    elif availableModes[selectedMode] == "rotateLEDs":
-        print("run 4")
-        #t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
-        #t1.start()
-    elif availableModes[selectedMode] == "bounceLEDs":
-        print("run 5")
-        #t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
-        #t1.start()
+    if killThread == False:
+        if availableModes[selectedMode] == "solidColour":
+            print("run 2")
+            t1 = threading.Thread(target=solidColour)
+            t1.start()
+        elif availableModes[selectedMode] == "rainbow":
+            print("run 3")
+            #t1 = threading.Thread(target=rainbow, args=(0.3,))
+            #t1.start()
+        elif availableModes[selectedMode] == "rotateLEDs":
+            print("run 4")
+            #t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
+            #t1.start()
+        elif availableModes[selectedMode] == "bounceLEDs":
+            print("run 5")
+            #t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
+            #t1.start()
     
     
 
