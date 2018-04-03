@@ -201,7 +201,7 @@ def btn_Callback(button_pin):
                 if brightness > maxBrightness:
                     brightness = 0            
                 
-                print("brightness : ", brightness)
+                #print("brightness : ", brightness)
                 #rGPIO.output(led_red_pin,rGPIO.HIGH)            
                 #rGPIO.output(led_red_pin,rGPIO.LOW)          
     
@@ -215,7 +215,7 @@ def btn_Callback(button_pin):
                 if selectedColourPos > maxSelectedColourPos:
                     selectedColourPos = 0            
             
-                print("Colour Pos : ", selectedColourPos)
+                #print("Colour Pos : ", selectedColourPos)
             #rGPIO.output(led_blue_pin,rGPIO.HIGH)            
             #rGPIO.output(led_blue_pin,rGPIO.LOW)
     elif button_pin == btn_green_pin:       # Green: Change Colour Mode
@@ -248,20 +248,24 @@ rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bounc
 def runMode():
     print("run mode , ", availableModes[selectedMode])
     endThread()
-    print("1")
+    print("run 1")
     if availableModes[selectedMode] == "solidColour":
-        print("2")
+        print("run 2")
         t1 = threading.Thread(target=solidColour)
+        t1.start()
     elif availableModes[selectedMode] == "rainbow":
-        print("3")
+        print("run 3")
         t1 = threading.Thread(target=rainbow, args=(0.3,))
+        t1.start()
     elif availableModes[selectedMode] == "rotateLEDs":
-        print("elif rotate")
+        print("run 4")
         t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
+        t1.start()
     #elif availableModes[selectedMode] == "bounceLEDs":
     #    t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
+    #    t1.start()
     print("4")
-    t1.start()
+    
 
 while True:
     #print("Thread count: ", threading.activeCount())
