@@ -261,10 +261,11 @@ def runMode():
         print("run 4")
         #t1 = threading.Thread(target=rotateLEDs, args=(0.01,))
         #t1.start()
-    #elif availableModes[selectedMode] == "bounceLEDs":
-    #    t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
-    #    t1.start()
-    print("run 5")
+    elif availableModes[selectedMode] == "bounceLEDs":
+        print("run 5")
+        #t1 = threading.Thread(target=bounceLEDs, args=(0.01,))
+        #t1.start()
+    
     
 
 while True:
