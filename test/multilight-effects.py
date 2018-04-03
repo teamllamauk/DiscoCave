@@ -112,7 +112,7 @@ def solidColour():
     setSolidColour()    
     start = time.time()
     while killThread == False:
-        print("run solid: killTread = ", killThread)
+        print("run solid: killTread = ", killThread, ". Active threads = ", threading.activeCount())
         if time.time() - start >= 0.1:            
             setSolidColour()
             start = time.time()
