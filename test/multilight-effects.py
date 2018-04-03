@@ -251,8 +251,8 @@ def runMode():
     print("run 1")
     if availableModes[selectedMode] == "solidColour":
         print("run 2")
-        #t1 = threading.Thread(target=solidColour)
-        #t1.start()
+        t1 = threading.Thread(target=solidColour)
+        t1.start()
     elif availableModes[selectedMode] == "rainbow":
         print("run 3")
         #t1 = threading.Thread(target=rainbow, args=(0.3,))
