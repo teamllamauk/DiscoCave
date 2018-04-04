@@ -38,7 +38,7 @@ ledRGBColour = convertHSVtoRGB(60)
 
 #while True:
 
-minBrightness = 5
+minBrightness = 1
 maxBrightness = 30
 
 for fadeBrightness in range(minBrightness, maxBrightness):
