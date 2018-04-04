@@ -17,11 +17,13 @@ global brightness
 global availableBrightness
 global selectedColourPos
 global availableColours
+global killThread
 
 brightness = 2 # index of availableBrightness
 availableBrightness = (7, 14, 20)
 selectedColourPos = 0 # index of availableColours
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
+killThread = False
 
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
@@ -61,25 +63,30 @@ def setSolidColour(brightnessOveride):
     strip.show()
 
 
-def fader(delayMs, minBrightness, maxBrightness):    
-    delay = delayMs / 1000
-    for a in range(0, 5):
-        for fadeBrightness in range(minBrightness, maxBrightness):
-            #for ledID in range(0, 60):
-            #    strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
-            #strip.show()
+def fader(delayMs, minBrightness, maxBrightness): 
+    global killThread
+    
+    delay = delayMs / 1000    
+    fadeDir = 1 # 1 = fade up, 0 = fade down
+    fadeBrightness = minBrightness
+    
+    while killThread == False:
+        if time.time() - start >= delay:                   
             setSolidColour(fadeBrightness)
-            time.sleep(delay)
-        
-        for fadeBrightness in range(maxBrightness, minBrightness, -1):
-            setSolidColour(fadeBrightness)
-            time.sleep(delay)
+            if fadeDir == 1:
+                fadeBrightness = fadeBrightness + 1
+                if fadeBrightness == maxBrightness:
+                    fadeDir = 0
+            elif fadeDir == 0:
+                fadeBrightness = fadeBrightness - 1
+                if fadeBrightness == minBrightness:
+                    fadeDir = 1
 
 
-ledRGBColour = convertHSVtoRGB(60)
+#ledRGBColour = convertHSVtoRGB(60)
 
 
-#while True:
+#
 
 #minBrightness = 1
 #maxBrightness = 30
@@ -88,8 +95,15 @@ ledRGBColour = convertHSVtoRGB(60)
 
 #print(delaytime)
 
-fader(10, 1, 30)
+#fader(10, 1, 30)
+t1 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
+t1.start()
 
+time.sleep(5)
+
+killThread = True
+
+time.sleep(3)
 #for a in range(0, 5):
 #    for fadeBrightness in range(minBrightness, maxBrightness):
 #        for ledID in range(0, 60):
