@@ -261,12 +261,12 @@ def runMode():
             t1.start()
         elif availableModes[selectedMode] == "rainbow":
             print("run 3")
-            #t2 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
-            #t2.start()
+            t2 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
+            t2.start()
         elif availableModes[selectedMode] == "rotateLEDs":
             print("run 4")
-            #t3 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
-            #t3.start()
+            t3 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
+            t3.start()
         elif availableModes[selectedMode] == "bounceLEDs":
             print("run 5")
             #t4 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
