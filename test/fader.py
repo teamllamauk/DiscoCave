@@ -34,7 +34,9 @@ def convertHSVtoRGB(hsvColour):
     return int(rgbHexColour, 16)
 
 
-ledRGBColour = convertHSVtoRGB(60)
+ledRGBColoura = convertHSVtoRGB(60)
+ledRGBColourb = convertHSVtoRGB(120)
+ledRGBColourc = convertHSVtoRGB(250)
 
 #while True:
 
@@ -43,37 +45,37 @@ maxBrightness = 30
 
 for fadeBrightness in range(minBrightness, maxBrightness):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColoura, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
         
 for fadeBrightness in range(maxBrightness, minBrightness, -1):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColoura, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
 
 for fadeBrightness in range(minBrightness, maxBrightness):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColourb, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
         
 for fadeBrightness in range(maxBrightness, minBrightness, -1):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColourb, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
     
 for fadeBrightness in range(minBrightness, maxBrightness):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColourc, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
         
 for fadeBrightness in range(maxBrightness, minBrightness, -1):
     for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.set_pixel_rgb(ledID, ledRGBColourc, fadeBrightness)        
     strip.show()
     time.sleep(0.01)
     
