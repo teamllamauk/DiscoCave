@@ -69,10 +69,11 @@ def fader(delayMs, minBrightness, maxBrightness):
     delay = delayMs / 1000    
     fadeDir = 1 # 1 = fade up, 0 = fade down
     fadeBrightness = minBrightness
-    
+    start = time.time()
     while killThread == False:
         if time.time() - start >= delay:                   
             setSolidColour(fadeBrightness)
+            start = time.time()
             if fadeDir == 1:
                 fadeBrightness = fadeBrightness + 1
                 if fadeBrightness == maxBrightness:
