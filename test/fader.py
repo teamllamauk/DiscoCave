@@ -34,50 +34,32 @@ def convertHSVtoRGB(hsvColour):
     return int(rgbHexColour, 16)
 
 
-ledRGBColoura = convertHSVtoRGB(60)
-ledRGBColourb = convertHSVtoRGB(120)
-ledRGBColourc = convertHSVtoRGB(250)
+ledRGBColour = convertHSVtoRGB(60)
+
 
 #while True:
 
 minBrightness = 1
 maxBrightness = 30
+delaytimeMs = 10
+delaytime = delaytimeMs / 1000
 
-for fadeBrightness in range(minBrightness, maxBrightness):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColoura, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
-        
-for fadeBrightness in range(maxBrightness, minBrightness, -1):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColoura, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
+print(delaytime)
 
-for fadeBrightness in range(minBrightness, maxBrightness):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColourb, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
+for a in range(0, 5)
+    for fadeBrightness in range(minBrightness, maxBrightness):
+        for ledID in range(0, 60):
+            strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.show()
+        time.sleep(delaytime)
         
-for fadeBrightness in range(maxBrightness, minBrightness, -1):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColourb, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
+    for fadeBrightness in range(maxBrightness, minBrightness, -1):
+        for ledID in range(0, 60):
+            strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
+        strip.show()
+        time.sleep(delaytime)
+
     
-for fadeBrightness in range(minBrightness, maxBrightness):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColourc, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
-        
-for fadeBrightness in range(maxBrightness, minBrightness, -1):
-    for ledID in range(0, 60):
-        strip.set_pixel_rgb(ledID, ledRGBColourc, fadeBrightness)        
-    strip.show()
-    time.sleep(0.01)
     
-    strip.clear_strip()
-    #time.sleep(5)
+strip.clear_strip()
+#time.sleep(5)
