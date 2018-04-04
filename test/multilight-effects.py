@@ -80,11 +80,11 @@ def endThread():
     print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
-        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")
-        for t in threading.enumerate():
-            keepLooping = False
+        print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")
+        keepLooping = False
+        for t in threading.enumerate():            
             if t.getName() == "lightAffect": keepLooping = True            
-            if keepLooping == False: break
+        if keepLooping == False: break
         
     killThread = False
     strip.clear_strip()
