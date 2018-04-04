@@ -273,6 +273,7 @@ while True:
     print("Thread count: ", threading.activeCount())
     for t in threading.enumerate():
         print("    Thread Name: ", t.getName())
+        time.sleep(0.5)
     
     if powerMode == 0 and prevPowerMode == 1:
         print("Power off")
