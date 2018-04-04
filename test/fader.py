@@ -49,3 +49,7 @@ while True:
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
         strip.show()
         time.sleep(0.05)
+
+    
+    strip.clear_strip()
+    time.sleep(5)
