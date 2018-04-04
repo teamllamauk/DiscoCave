@@ -42,10 +42,10 @@ while True:
         for ledID in range(0, 60):
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
         strip.show()
-        time.sleep(0.1)
+        time.sleep(0.05)
         
     for fadeBrightness in range(20, 0, -1):
         for ledID in range(0, 60):
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
         strip.show()
-        time.sleep(0.1)
+        time.sleep(0.05)
