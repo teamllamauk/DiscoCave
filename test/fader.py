@@ -96,7 +96,7 @@ def fader(delayMs, minBrightness, maxBrightness):
 #print(delaytime)
 
 #fader(10, 1, 30)
-t1 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
+t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
 t1.start()
 
 time.sleep(5)
