@@ -10,7 +10,7 @@ import RPi.GPIO as rGPIO
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
 
-strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, order='rgb')
+strip = apa102.APA102(num_led=60, global_brightness=30, mosi = 10, sclk = 11, order='rgb')
 
 strip.clear_strip()
 
@@ -38,17 +38,17 @@ ledRGBColour = convertHSVtoRGB(60)
 
 while True:
 
-    for fadeBrightness in range(0, 20):
+    for fadeBrightness in range(0, 30):
         for ledID in range(0, 60):
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
         strip.show()
-        time.sleep(0.05)
+        time.sleep(0.01)
         
-    for fadeBrightness in range(20, 0, -1):
+    for fadeBrightness in range(30, 0, -1):
         for ledID in range(0, 60):
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
         strip.show()
-        time.sleep(0.05)
+        time.sleep(0.01)
 
     
     strip.clear_strip()
