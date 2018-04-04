@@ -10,7 +10,7 @@ import RPi.GPIO as rGPIO
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
 
-strip = apa102.APA102(num_led=60, global_brightness=20, mosi = 10, sclk = 11, order='rgb')
+strip = apa102.APA102(num_led=60, global_brightness=30, mosi = 10, sclk = 11, order='rgb')
 
 strip.clear_strip()
 
@@ -31,9 +31,9 @@ global bounceGreen
 prevPowerMode = 0
 powerMode = 0 # 0 is off, 1 is on
 selectedMode = 0 # index of availableModes
-availableModes = ("solidColour", "rainbow", "rotateLEDs", "bounceLEDs")
+availableModes = ("solidColour", "rainbow", "rotateLEDs", "fader", "bounceLEDs")
 brightness = 2 # index of availableBrightness
-availableBrightness = (7, 14, 20)
+availableBrightness = (1, 15, 30)
 selectedColourPos = 0 # index of availableColours
 availableColours = (0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330)
 killThread = False # kills running threads when set to true
@@ -115,27 +115,32 @@ def convertHSVtoRGB(hsvColour):
 def solidColour():    
     global killThread              
     print("Solid")
-    setSolidColour()    
+    setSolidColour(-1)    
     start = time.time()
     while killThread == False:
         #print("run solid: killTread = ", killThread, ". Active threads = ", threading.activeCount())
         if time.time() - start >= 0.1:            
-            setSolidColour()
+            setSolidColour(-1)
             start = time.time()
     print("end solid")
             
             
-def setSolidColour():
+def setSolidColour(brightnessOveride):
     global availableColours
     global selectedColourPos
     global availableBrightness
-    global brightness    
+    global brightness
+    
+    ledStripBrightness = availableBrightness[brightness]
+    
+    if brightnessOveride > -1:
+        ledStripBrightness = brightnessOveride
     
     ledHSVColour = availableColours[selectedColourPos]    
     ledRGBColour = convertHSVtoRGB(ledHSVColour)
     #strip.clear_strip()
     for x in range(0, 60):
-        strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
+        strip.set_pixel_rgb(x, ledRGBColour, ledStripBrightness)        
     strip.show()
 
  
@@ -147,10 +152,31 @@ def rainbow(delay):
     start = time.time()
     while killThread == False:
         if time.time() - start >= delay:            
-            setSolidColour()            
+            setSolidColour(-1)            
             selectedColourPos = selectedColourPos + 1
             if selectedColourPos > 11: selectedColourPos = 0
             start = time.time()
+
+
+def fader(delayMs, minBrightness, maxBrightness): 
+    global killThread
+    
+    delay = delayMs / 1000    
+    fadeDir = 1 # 1 = fade up, 0 = fade down
+    fadeBrightness = minBrightness
+    start = time.time()
+    while killThread == False:
+        if time.time() - start >= delay:                   
+            setSolidColour(fadeBrightness)
+            start = time.time()
+            if fadeDir == 1:
+                fadeBrightness = fadeBrightness + 1
+                if fadeBrightness == maxBrightness:
+                    fadeDir = 0
+            elif fadeDir == 0:
+                fadeBrightness = fadeBrightness - 1
+                if fadeBrightness == minBrightness:
+                    fadeDir = 1
 
 
 def rotateLEDs(delay):
@@ -323,6 +349,10 @@ def runMode():
         elif availableModes[selectedMode] == "bounceLEDs":
             print("run 5")
             t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
+            t1.start()
+        elif availableModes[selectedMode] == "fader":
+            print("run 5")
+            t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
             t1.start()
     
     
