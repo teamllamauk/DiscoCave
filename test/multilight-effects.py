@@ -91,6 +91,7 @@ def endThread():
     #strip.cleanup()
     print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
 
+
 def convertHSVtoRGB(hsvColour):
     rgbColour = colorsys.hsv_to_rgb(hsvColour/360,1,1)
     #print("HSV: ", hsvColour)
@@ -137,6 +138,7 @@ def setSolidColour():
         strip.set_pixel_rgb(x, ledRGBColour, availableBrightness[brightness])        
     strip.show()
 
+ 
 def rainbow(delay):
     global availableColours
     global selectedColourPos
@@ -158,12 +160,12 @@ def rotateLEDs(delay):
     print("Rotate")
     start = time.time()
     while killThread == False:
-        print("Rotate")
+        #print("Rotate")
         #for x in range(0, 60):
         x = 0    
         while x < 60 and killThread == False:            
             if time.time() - start >= delay:
-                print("        rotating")
+                #print("        rotating")
                 ledOne = x
                 ledTwo = x + 1
                 ledThree = x + 2            
@@ -180,7 +182,58 @@ def rotateLEDs(delay):
                 strip.show()
                 x = x + 1
                 start = time.time()
+
+
+def bounceLEDs(delay):    
+    global availableColours
+    global selectedColourPos
+    global killThread
+    
+    start = time.time()
+    while killThread == False:
+        print("    Bounce")
+        x = 0    
+        while x < 60 and killThread == False:
+            if time.time() - start >= delay:
+                print("        Bounce F")
+                ledOne = x
+                ledTwo = x + 1
+                ledThree = x + 2            
             
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4
+            
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo < 61: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree < 61: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
+                strip.show()
+                x = x + 1
+                start = time.time()            
+            
+        while x > 0 and killThread == False:
+            if time.time() - start >= delay:
+                print("        Bounce R")
+                ledOne = x
+                ledTwo = x - 1
+                ledThree = x - 2            
+            
+                ledHSVColour = availableColours[selectedColourPos]    
+                ledRGBColour = convertHSVtoRGB(ledHSVColour)
+                
+                dimmedBrightness = availableBrightness[brightness] / 4
+            
+                strip.clear_strip()
+                strip.set_pixel_rgb(ledOne, ledRGBColour, dimmedBrightness)
+                if ledTwo > 0: strip.set_pixel_rgb(ledTwo, ledRGBColour, availableBrightness[brightness])
+                if ledThree > 0: strip.set_pixel_rgb(ledThree, ledRGBColour, dimmedBrightness)
+                strip.show()
+                x = x - 1
+                start = time.time()
+
+
 def btn_Callback(button_pin):    
     global powerMode
     global selectedMode
@@ -261,16 +314,16 @@ def runMode():
             t1.start()
         elif availableModes[selectedMode] == "rainbow":
             print("run 3")
-            t2 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
-            t2.start()
+            t1 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
+            t1.start()
         elif availableModes[selectedMode] == "rotateLEDs":
             print("run 4")
-            t3 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
-            t3.start()
+            t1 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
+            t1.start()
         elif availableModes[selectedMode] == "bounceLEDs":
             print("run 5")
-            #t4 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
-            #t4.start()
+            t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
+            t1.start()
     
     
 
