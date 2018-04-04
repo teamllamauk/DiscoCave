@@ -188,14 +188,14 @@ def bounceLEDs(delay):
     global availableColours
     global selectedColourPos
     global killThread
-    
+    print("    Bounce")
     start = time.time()
     while killThread == False:
-        print("    Bounce")
+        
         x = 0    
         while x < 60 and killThread == False:
             if time.time() - start >= delay:
-                print("        Bounce F")
+                #print("        Bounce F")
                 ledOne = x
                 ledTwo = x + 1
                 ledThree = x + 2            
@@ -215,7 +215,7 @@ def bounceLEDs(delay):
             
         while x > 0 and killThread == False:
             if time.time() - start >= delay:
-                print("        Bounce R")
+                #print("        Bounce R")
                 ledOne = x
                 ledTwo = x - 1
                 ledThree = x - 2            
