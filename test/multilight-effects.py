@@ -80,7 +80,12 @@ def endThread():
     print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
-        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")    
+        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")
+        for t in threading.enumerate():
+            keepLooping = False
+            if t.getName() == "lightAffect": keepLooping = True            
+            if keepLooping == False: break
+        
     killThread = False
     strip.clear_strip()
     #strip.cleanup()
@@ -252,19 +257,19 @@ def runMode():
     if killThread == False:
         if availableModes[selectedMode] == "solidColour":
             print("run 2")
-            t1 = threading.Thread(name="solid", target=solidColour)
+            t1 = threading.Thread(name="lightAffect", target=solidColour)
             t1.start()
         elif availableModes[selectedMode] == "rainbow":
             print("run 3")
-            #t2 = threading.Thread(name="rainbow", target=rainbow, args=(0.3,))
+            #t2 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
             #t2.start()
         elif availableModes[selectedMode] == "rotateLEDs":
             print("run 4")
-            #t3 = threading.Thread(name="rotateLEDs", target=rotateLEDs, args=(0.01,))
+            #t3 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
             #t3.start()
         elif availableModes[selectedMode] == "bounceLEDs":
             print("run 5")
-            #t4 = threading.Thread(name="bounceLEDs", target=bounceLEDs, args=(0.01,))
+            #t4 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
             #t4.start()
     
     
