@@ -46,7 +46,7 @@ delaytime = delaytimeMs / 1000
 
 print(delaytime)
 
-for a in range(0, 5)
+for a in range(0, 5):
     for fadeBrightness in range(minBrightness, maxBrightness):
         for ledID in range(0, 60):
             strip.set_pixel_rgb(ledID, ledRGBColour, fadeBrightness)        
