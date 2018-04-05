@@ -421,7 +421,7 @@ def checkTime():
 
 def playSound():
     global btn_orange_flag
-    print("Start Sound")
+    #print("Start Sound")
     btn_orange_flag = 1
     
     pygame.mixer.init()
@@ -447,33 +447,33 @@ def playSound():
         time.sleep(0.25)
     
     rGPIO.output(led_orange_pin,rGPIO.LOW)
-    print("Finished Sound")
+    #print("Finished Sound")
     btn_orange_flag = 0
 
 
 def runMode():
     print("run mode , ", availableModes[selectedMode])
     endThread()
-    print("run 1")
+    #print("run 1")
     if killThread == False:
         if availableModes[selectedMode] == "solidColour":
-            print("run 2")
+            #print("run 2")
             t1 = threading.Thread(name="lightAffect", target=solidColour)
             t1.start()
         elif availableModes[selectedMode] == "rainbow":
-            print("run 3")
+            #print("run 3")
             t1 = threading.Thread(name="lightAffect", target=rainbow, args=(0.3,))
             t1.start()
         elif availableModes[selectedMode] == "rotateLEDs":
-            print("run 4")
+            #print("run 4")
             t1 = threading.Thread(name="lightAffect", target=rotateLEDs, args=(0.01,))
             t1.start()
         elif availableModes[selectedMode] == "bounceLEDs":
-            print("run 5")
+            #print("run 5")
             t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
             t1.start()
         elif availableModes[selectedMode] == "fader":
-            print("run 5")
+            #print("run 5")
             t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
             t1.start()
     
