@@ -475,7 +475,8 @@ def runMode():
             #print("run 5")
             t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
             t1.start()
-    
+
+print("Started")
 tBed = threading.Thread(name="checkBedTime", target=checkTime)
 tBed.start()    
 
