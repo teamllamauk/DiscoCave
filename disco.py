@@ -422,20 +422,21 @@ def illuminateButtonPress():
     
     while True:
         if bedTime == False and powerMode == 1:
-            if rGPIO.input(btn_red_pin):
-                rGPIO.output(led_red_pin,rGPIO.HIGH)
-            else:
-                rGPIO.output(led_red_pin,rGPIO.LOW)
+            print("Red Button State: ", rGPIO.input(btn_red_pin))
+            #if rGPIO.input(btn_red_pin):
+            #    rGPIO.output(led_red_pin,rGPIO.HIGH)
+            #else:
+            #    rGPIO.output(led_red_pin,rGPIO.LOW)
                 
-            if rGPIO.input(btn_blue_pin):
-                rGPIO.output(led_blue_pin,rGPIO.HIGH)
-            else:
-                rGPIO.output(led_blue_pin,rGPIO.LOW)
+            #if rGPIO.input(btn_blue_pin):
+            #    rGPIO.output(led_blue_pin,rGPIO.HIGH)
+            #else:
+            #    rGPIO.output(led_blue_pin,rGPIO.LOW)
                 
-            if rGPIO.input(btn_green_pin):
-                rGPIO.output(led_green_pin,rGPIO.HIGH)
-            else:
-                rGPIO.output(led_green_pin,rGPIO.LOW)
+            #if rGPIO.input(btn_green_pin):
+            #    rGPIO.output(led_green_pin,rGPIO.HIGH)
+            #else:
+            #    rGPIO.output(led_green_pin,rGPIO.LOW)
         
 
 def playSound():
