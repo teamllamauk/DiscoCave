@@ -4,6 +4,12 @@
 import time
 import datetime
 
-timeNow = datetime.datetime.now().time()
 
+timeNow = datetime.datetime.now().time()
 print(timeNow)
+
+utc_dt = datetime.datetime.now(datetime.timezone.utc)
+print(utx_dt)
+
+dt = utc_dt.astimezone()
+print(dt)
