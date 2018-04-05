@@ -8,7 +8,8 @@ import datetime
 timeNow = datetime.datetime.now()
 print(timeNow)
 
-timeHHmm = datetime.datetime.strptime(timeNow, "%H:%M")
+timeHHmm = timeNow.strftime("%H:%M")
+#timeHHmm = datetime.datetime.strptime(timeNow, "%H:%M")
 print(timeHHmm)
 
 
