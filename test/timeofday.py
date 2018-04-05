@@ -5,9 +5,13 @@ import time
 import datetime
 
 
-timeNow() = datetime.datetime.now().time()
+timeNow = datetime.datetime.now().time()
 print(timeNow)
 
-#utc_dt = datetime.datetime.now(datetime.timezone.utc).time()
-#dt = utc_dt.astimezone()
-#print(dt)
+timeHHmm = datetime.datetime.strptime(timeNow, "%H:%M")
+print(timeHHmm)
+
+
+
+#def timeDiff():
+    
