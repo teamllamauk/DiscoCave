@@ -389,11 +389,15 @@ def checkTime():
         timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
         timeOffHHmm = timeOff.strftime("%H:%M")
     
+        print("Now: ", timeNowHHmm, ", On: ", timeOnHHmm, ", Off: ", timeOffHHmm)
+        
         if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
             bedTime = True
             powerMode = 0
         else:
             bedTime = False
+        
+        time.sleep(15)
 
 
 def runMode():
