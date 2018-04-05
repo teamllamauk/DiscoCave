@@ -392,10 +392,10 @@ def checkTime():
         print("Now: ", timeNowHHmm, ", On: ", timeOnHHmm, ", Off: ", timeOffHHmm)
         
         if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
+            bedTime = False            
+        else:
             bedTime = True
             powerMode = 0
-        else:
-            bedTime = False
         
         print("Checktime: ", bedTime)
         time.sleep(15)
