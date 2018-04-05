@@ -89,10 +89,10 @@ rGPIO.output(led_orange_pin,rGPIO.LOW)
 
 def endThread():
     global killThread        
-    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
+    #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread)
     while threading.activeCount() > 1:        
         killThread = True
-        print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")
+        #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Ending...")
         keepLooping = False
         for t in threading.enumerate():            
             if t.getName() == "lightAffect": keepLooping = True            
@@ -101,7 +101,7 @@ def endThread():
     killThread = False
     strip.clear_strip()
     #strip.cleanup()
-    print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
+    #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
 
 
 def convertHSVtoRGB(hsvColour):
@@ -384,6 +384,7 @@ rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncet
 rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 
 def checkTime():
     global bedTime
