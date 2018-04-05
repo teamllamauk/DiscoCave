@@ -302,11 +302,12 @@ def btn_Callback(button_pin):
                 #rGPIO.output(led_red_pin,rGPIO.HIGH)            
                 #rGPIO.output(led_red_pin,rGPIO.LOW)          
     elif button_pin == btn_orange_pin:
-        if btn_orange_flag == 0 :
-            ts = threading.Thread(name="soundclip", target=playSound)
-            ts.start()
-        else :
-            print("Already Playing")
+        if powerMode == 1:
+            if btn_orange_flag == 0 :
+                ts = threading.Thread(name="soundclip", target=playSound)
+                ts.start()
+            else :
+                print("Already Playing")
             
     elif button_pin == btn_blue_pin:        # Blue: Colour
         if time.time() - bounceBlue >= 0.5:
