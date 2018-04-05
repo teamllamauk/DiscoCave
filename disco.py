@@ -293,6 +293,7 @@ def btn_Callback(button_pin):
             bounceRed = time.time()
             #print("brightness", powerMode)
             if powerMode == 1:
+                rGPIO.output(btn_red_pin,rGPIO.HIGH)
                 maxBrightness = len(availableBrightness) - 1
                 brightness = brightness + 1
                 if brightness > maxBrightness:
@@ -313,7 +314,8 @@ def btn_Callback(button_pin):
         if time.time() - bounceBlue >= 0.5:
             bounceBlue = time.time()
             #print("colour", powerMode)
-            if powerMode == 1:        
+            if powerMode == 1:
+                rGPIO.output(btn_blue_pin,rGPIO.HIGH)
                 maxSelectedColourPos = len(availableColours) - 1
                 selectedColourPos = selectedColourPos + 1
                 if selectedColourPos > maxSelectedColourPos:
@@ -326,6 +328,7 @@ def btn_Callback(button_pin):
         if time.time() - bounceGreen >= 0.5:
             bounceGreen = time.time()
             if powerMode == 1:
+                rGPIO.output(btn_green_pin,rGPIO.HIGH)
                 maxSelectedMode = len(availableModes) - 1
                 selectedMode = selectedMode + 1
                 if selectedMode > maxSelectedMode:
@@ -379,13 +382,28 @@ def btn_Callback(button_pin):
                 rGPIO.output(led_blue_pin,rGPIO.LOW)
                 rGPIO.output(led_green_pin,rGPIO.LOW)
                 rGPIO.output(led_orange_pin,rGPIO.LOW)
-                
-
+ 
+def btn_CallbackOff(button_pin):
+    if button_pin == btn_red_pin:           # Red: Brightness                  
+        rGPIO.output(btn_red_pin,rGPIO.LOW)
+    elif button_pin == btn_blue_pin:        # Blue: Colour
+        rGPIO.output(btn_blue_pin,rGPIO.LOW)
+    elif button_pin == btn_green_pin:       # Green: Change Colour Mode
+        rGPIO.output(led_green_pin,rGPIO.LOW)
+    
+        
+        
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+
+rGPIO.add_event_detect(btn_red_pin, rGPIO.FALLING, callback=btn_CallbackOff, bouncetime=200)
+rGPIO.add_event_detect(btn_blue_pin, rGPIO.FALLING, callback=btn_CallbackOff, bouncetime=200)
+rGPIO.add_event_detect(btn_white_pin, rGPIO.FALLING, callback=btn_CallbackOff, bouncetime=200)
+rGPIO.add_event_detect(btn_green_pin, rGPIO.FALLING, callback=btn_CallbackOff, bouncetime=200)
+rGPIO.add_event_detect(btn_orange_pin, rGPIO.FALLING, callback=btn_CallbackOff, bouncetime=200)
 
 def checkTime():
     global bedTime
