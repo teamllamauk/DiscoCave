@@ -5,9 +5,9 @@ import time
 import datetime
 
 
-#timeNow = datetime.datetime.now().time()
-#print(timeNow)
+timeNow = datetime.datetime.now().time()
+print(timeNow)
 
-utc_dt = datetime.datetime.now(datetime.timezone.utc).time()
-dt = utc_dt.astimezone()
-print(dt)
+#utc_dt = datetime.datetime.now(datetime.timezone.utc).time()
+#dt = utc_dt.astimezone()
+#print(dt)
