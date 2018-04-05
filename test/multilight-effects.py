@@ -54,11 +54,13 @@ btn_red_pin = 23
 btn_blue_pin = 24
 btn_white_pin = 6
 btn_green_pin = 13
+btn_orange_pin = 17
 
 led_red_pin = 22
 led_blue_pin = 25
 led_white_pin = 5
 led_green_pin = 12
+led_orange_pin = 27
 
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
@@ -67,16 +69,19 @@ rGPIO.setup(btn_red_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_blue_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_white_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 rGPIO.setup(btn_green_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
+rGPIO.setup(btn_orange_pin, rGPIO.IN, pull_up_down=rGPIO.PUD_UP)
 
 rGPIO.setup(led_red_pin,rGPIO.OUT)
 rGPIO.setup(led_blue_pin,rGPIO.OUT)
 rGPIO.setup(led_white_pin,rGPIO.OUT)
 rGPIO.setup(led_green_pin,rGPIO.OUT)
+rGPIO.setup(led_orange_pin,rGPIO.OUT)
 
 rGPIO.output(led_red_pin,rGPIO.LOW)
 rGPIO.output(led_blue_pin,rGPIO.LOW)
 rGPIO.output(led_white_pin,rGPIO.LOW)
 rGPIO.output(led_green_pin,rGPIO.LOW)
+rGPIO.output(led_orange_pin,rGPIO.LOW)
 
 def endThread():
     global killThread        
