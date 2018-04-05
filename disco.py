@@ -498,7 +498,10 @@ def runMode():
 
 print("Started")
 tBed = threading.Thread(name="checkBedTime", target=checkTime)
-tBed.start()    
+tBed.start()
+
+tIllume = threading.Thread(name="illuminate", target=illuminateButtonPress)
+tIllume.start()
 
 while True:
     #bedTime = checkTime
