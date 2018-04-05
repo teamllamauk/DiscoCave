@@ -16,7 +16,7 @@ def checkTime():
     
     if timeNowHHmm > timeOnHHmm and timeNowHHmm < timeOffHHmm:
         return True
-    else
+    else:
         return False
 
     
