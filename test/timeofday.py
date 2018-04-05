@@ -3,30 +3,39 @@
 # Imports
 import time
 import datetime
+global bedTime
+
+bedTime = False
 
 def checkTime():
+    global bedTime
     #wakeUp = "07:00"
     #goToBed = "19:00"
     
-    wakeUp = "10:38"
-    goToBed = "10:40"
+    wakeUp = "10:54"
+    goToBed = "10:55"
     
-    timeNow = datetime.datetime.now()
-    timeNowHHmm = timeNow.strftime("%H:%M")
+    while True:
     
-    timeOn = datetime.datetime.strptime(wakeUp, "%H:%M")
-    timeOnHHmm = timeOn.strftime("%H:%M")
+        timeNow = datetime.datetime.now()
+        timeNowHHmm = timeNow.strftime("%H:%M")
     
-    timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
-    timeOffHHmm = timeOff.strftime("%H:%M")
+        timeOn = datetime.datetime.strptime(wakeUp, "%H:%M")
+        timeOnHHmm = timeOn.strftime("%H:%M")
     
-    if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
-        return True
-    else:
-        return False
+        timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
+        timeOffHHmm = timeOff.strftime("%H:%M")
+    
+        if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
+            bedTime = True
+        else:
+            bedTime = False
 
+tBed = threading.Thread(name="checkBedTime", target=checkTime)
+tBed.start()
+    
 while True:
     
     timeNow = datetime.datetime.now()
     timeNowHHmm = timeNow.strftime("%H:%M")
-    print(checkTime(), " - ", timeNowHHmm)
+    print(bedTime, " - ", timeNowHHmm)
