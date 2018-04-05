@@ -126,7 +126,7 @@ def convertHSVtoRGB(hsvColour):
 
 def solidColour():    
     global killThread              
-    print("Solid")
+    #print("Solid")
     setSolidColour(-1)    
     start = time.time()
     while killThread == False:
@@ -134,7 +134,7 @@ def solidColour():
         if time.time() - start >= 0.1:            
             setSolidColour(-1)
             start = time.time()
-    print("end solid")
+    #print("end solid")
             
             
 def setSolidColour(brightnessOveride):
@@ -160,7 +160,7 @@ def rainbow(delay):
     global availableColours
     global selectedColourPos
     global killThread  
-    print("Rainbow")
+    #print("Rainbow")
     start = time.time()
     while killThread == False:
         if time.time() - start >= delay:            
@@ -195,7 +195,7 @@ def rotateLEDs(delay):
     global availableColours
     global selectedColourPos    
     global killThread
-    print("Rotate")
+    #print("Rotate")
     start = time.time()
     while killThread == False:
         #print("Rotate")
@@ -226,7 +226,7 @@ def bounceLEDs(delay):
     global availableColours
     global selectedColourPos
     global killThread
-    print("    Bounce")
+    #print("    Bounce")
     start = time.time()
     while killThread == False:
         
@@ -287,7 +287,7 @@ def btn_Callback(button_pin):
     global bounceGreen
     global btn_orange_flag
     
-    print("callback button pin", button_pin)
+    #print("callback button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness        
         if time.time() - bounceRed >= 0.5:
             bounceRed = time.time()
@@ -306,8 +306,8 @@ def btn_Callback(button_pin):
             if btn_orange_flag == 0 :
                 ts = threading.Thread(name="soundclip", target=playSound)
                 ts.start()
-            else :
-                print("Already Playing")
+            #else :
+                #print("Already Playing")
             
     elif button_pin == btn_blue_pin:        # Blue: Colour
         if time.time() - bounceBlue >= 0.5:
@@ -390,10 +390,9 @@ rGPIO.add_event_detect(btn_orange_pin, rGPIO.RISING, callback=btn_Callback, boun
 def checkTime():
     global bedTime
     global powerMode
-    wakeUp = "07:00"
-    #goToBed = "19:00"
     
-    #wakeUp = "10:54"
+    wakeUp = "07:00"
+    #goToBed = "19:00"   
     goToBed = "22:00"
     
     while True:
@@ -426,7 +425,7 @@ def playSound():
     
     pygame.mixer.init()
     volume = pygame.mixer.music.get_volume()
-    print(volume)
+    #print(volume)
     
     audio_rand = randint(1, 25)    # Pick a random number between 1 and 25.
     
@@ -483,10 +482,10 @@ tBed.start()
 while True:
     #bedTime = checkTime
     
-    print("Thread count: ", threading.activeCount())
-    for t in threading.enumerate():
-        print("    Thread Name: ", t.getName())
-        time.sleep(0.5)
+    #print("Thread count: ", threading.activeCount())
+    #for t in threading.enumerate():
+    #    print("    Thread Name: ", t.getName())
+    #    time.sleep(0.5)
         
     #print("Bedtime - ", bedTime)
     
