@@ -8,8 +8,8 @@ def checkTime():
     #wakeUp = "07:00"
     #goToBed = "19:00"
     
-    wakeUp = "10:36"
-    goToBed = "10:38"
+    wakeUp = "10:38"
+    goToBed = "10:40"
     
     timeNow = datetime.datetime.now()
     timeNowHHmm = timeNow.strftime("%H:%M")
@@ -20,7 +20,7 @@ def checkTime():
     timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
     timeOffHHmm = timeOff.strftime("%H:%M")
     
-    if timeNowHHmm > timeOnHHmm and timeNowHHmm < timeOffHHmm:
+    if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
         return True
     else:
         return False
