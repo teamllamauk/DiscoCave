@@ -292,8 +292,7 @@ def btn_Callback(button_pin):
         if time.time() - bounceRed >= 0.5:
             bounceRed = time.time()
             #print("brightness", powerMode)
-            if powerMode == 1:
-                rGPIO.output(btn_red_pin,rGPIO.HIGH)
+            if powerMode == 1:                
                 maxBrightness = len(availableBrightness) - 1
                 brightness = brightness + 1
                 if brightness > maxBrightness:
@@ -314,8 +313,7 @@ def btn_Callback(button_pin):
         if time.time() - bounceBlue >= 0.5:
             bounceBlue = time.time()
             #print("colour", powerMode)
-            if powerMode == 1:
-                rGPIO.output(btn_blue_pin,rGPIO.HIGH)
+            if powerMode == 1:                
                 maxSelectedColourPos = len(availableColours) - 1
                 selectedColourPos = selectedColourPos + 1
                 if selectedColourPos > maxSelectedColourPos:
@@ -327,8 +325,7 @@ def btn_Callback(button_pin):
     elif button_pin == btn_green_pin:       # Green: Change Colour Mode
         if time.time() - bounceGreen >= 0.5:
             bounceGreen = time.time()
-            if powerMode == 1:
-                rGPIO.output(btn_green_pin,rGPIO.HIGH)
+            if powerMode == 1:                
                 maxSelectedMode = len(availableModes) - 1
                 selectedMode = selectedMode + 1
                 if selectedMode > maxSelectedMode:
