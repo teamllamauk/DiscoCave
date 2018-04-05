@@ -18,3 +18,6 @@ print(timeOnHHmm)
 timeOff = datetime.datetime.strptime("19:00", "%H:%M")
 timeOffHHmm = timeOff.strftime("%H:%M")
 print(timeOffHHmm)
+
+if timeNowHHmm > timeOnHHmm and timeNowHHmm < timeOffHHmm:
+    print("OK")
