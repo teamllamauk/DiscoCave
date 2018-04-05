@@ -377,11 +377,11 @@ rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bounc
 def checkTime():
     global bedTime
     global powerMode
-    #wakeUp = "07:00"
+    wakeUp = "07:00"
     #goToBed = "19:00"
     
-    wakeUp = "10:54"
-    goToBed = "10:55"
+    #wakeUp = "10:54"
+    goToBed = "22:00"
     
     while True:
     
