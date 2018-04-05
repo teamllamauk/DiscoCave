@@ -397,6 +397,7 @@ def checkTime():
         else:
             bedTime = False
         
+        print("Checktime: ", bedTime)
         time.sleep(15)
 
 
