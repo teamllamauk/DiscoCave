@@ -15,6 +15,7 @@ strip = apa102.APA102(num_led=60, global_brightness=30, mosi = 10, sclk = 11, or
 strip.clear_strip()
 
 global prevPowerMode
+global bedTime
 global powerMode
 global selectedMode
 global availableModes
@@ -29,6 +30,7 @@ global bounceWhite
 global bounceGreen
 
 prevPowerMode = 0
+bedTime = True
 powerMode = 0 # 0 is off, 1 is on
 selectedMode = 0 # index of availableModes
 availableModes = ("solidColour", "rainbow", "rotateLEDs", "fader", "bounceLEDs")
@@ -316,18 +318,82 @@ def btn_Callback(button_pin):
          if time.time() - bounceWhite >= 0.5:
             bounceWhite = time.time()
             #print("o", powerMode)
-            if powerMode == 0:        
-                rGPIO.output(led_white_pin,rGPIO.HIGH)
-                powerMode = 1
+            if bedTime = False:
+                if powerMode == 0:        
+                    rGPIO.output(led_white_pin,rGPIO.HIGH)
+                    powerMode = 1
+                else:
+                    rGPIO.output(led_white_pin,rGPIO.LOW)
+                    powerMode = 0
             else:
+                rGPIO.output(led_white_pin,rGPIO.HIGH)
+                rGPIO.output(led_red_pin,rGPIO.HIGH)
+                rGPIO.output(led_blue_pin,rGPIO.HIGH)
+                rGPIO.output(led_green_pin,rGPIO.HIGH)
+                rGPIO.output(led_orange_pin,rGPIO.HIGH)
+                time.sleep(0.2)
                 rGPIO.output(led_white_pin,rGPIO.LOW)
-                powerMode = 0
-
+                rGPIO.output(led_red_pin,rGPIO.LOW)
+                rGPIO.output(led_blue_pin,rGPIO.LOW)
+                rGPIO.output(led_green_pin,rGPIO.LOW)
+                rGPIO.output(led_orange_pin,rGPIO.LOW)
+                time.sleep(0.2)
+                rGPIO.output(led_white_pin,rGPIO.HIGH)
+                rGPIO.output(led_red_pin,rGPIO.HIGH)
+                rGPIO.output(led_blue_pin,rGPIO.HIGH)
+                rGPIO.output(led_green_pin,rGPIO.HIGH)
+                rGPIO.output(led_orange_pin,rGPIO.HIGH)
+                time.sleep(0.2)
+                rGPIO.output(led_white_pin,rGPIO.LOW)
+                rGPIO.output(led_red_pin,rGPIO.LOW)
+                rGPIO.output(led_blue_pin,rGPIO.LOW)
+                rGPIO.output(led_green_pin,rGPIO.LOW)
+                rGPIO.output(led_orange_pin,rGPIO.LOW)
+                time.sleep(0.2)
+                rGPIO.output(led_white_pin,rGPIO.HIGH)
+                rGPIO.output(led_red_pin,rGPIO.HIGH)
+                rGPIO.output(led_blue_pin,rGPIO.HIGH)
+                rGPIO.output(led_green_pin,rGPIO.HIGH)
+                rGPIO.output(led_orange_pin,rGPIO.HIGH)
+                time.sleep(0.2)
+                rGPIO.output(led_white_pin,rGPIO.LOW)
+                rGPIO.output(led_red_pin,rGPIO.LOW)
+                rGPIO.output(led_blue_pin,rGPIO.LOW)
+                rGPIO.output(led_green_pin,rGPIO.LOW)
+                rGPIO.output(led_orange_pin,rGPIO.LOW)
+                
 
 rGPIO.add_event_detect(btn_red_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_blue_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_white_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
 rGPIO.add_event_detect(btn_green_pin, rGPIO.RISING, callback=btn_Callback, bouncetime=200)
+
+def checkTime():
+    global bedTime
+    global powerMode
+    #wakeUp = "07:00"
+    #goToBed = "19:00"
+    
+    wakeUp = "10:54"
+    goToBed = "10:55"
+    
+    while True:
+    
+        timeNow = datetime.datetime.now()
+        timeNowHHmm = timeNow.strftime("%H:%M")
+    
+        timeOn = datetime.datetime.strptime(wakeUp, "%H:%M")
+        timeOnHHmm = timeOn.strftime("%H:%M")
+    
+        timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
+        timeOffHHmm = timeOff.strftime("%H:%M")
+    
+        if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
+            bedTime = True
+            powerMode = 0
+        else:
+            bedTime = False
+
 
 def runMode():
     print("run mode , ", availableModes[selectedMode])
@@ -355,9 +421,12 @@ def runMode():
             t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
             t1.start()
     
-    
+tBed = threading.Thread(name="checkBedTime", target=checkTime)
+tBed.start()    
 
 while True:
+    #bedTime = checkTime
+    
     print("Thread count: ", threading.activeCount())
     for t in threading.enumerate():
         print("    Thread Name: ", t.getName())
