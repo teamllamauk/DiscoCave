@@ -432,6 +432,8 @@ while True:
     for t in threading.enumerate():
         print("    Thread Name: ", t.getName())
         time.sleep(0.5)
+        
+    print("Bedtime - ", bedTime)
     
     if powerMode == 0 and prevPowerMode == 1:
         print("Power off")
