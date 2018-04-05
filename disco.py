@@ -287,7 +287,7 @@ def btn_Callback(button_pin):
     global bounceGreen
     global btn_orange_flag
     
-    #print("callback button pin", button_pin)
+    print("callback button pin", button_pin)
     if button_pin == btn_red_pin:           # Red: Brightness        
         if time.time() - bounceRed >= 0.5:
             bounceRed = time.time()
@@ -405,7 +405,7 @@ def checkTime():
         timeOff = datetime.datetime.strptime(goToBed, "%H:%M")
         timeOffHHmm = timeOff.strftime("%H:%M")
     
-        print("Now: ", timeNowHHmm, ", On: ", timeOnHHmm, ", Off: ", timeOffHHmm)
+        #print("Now: ", timeNowHHmm, ", On: ", timeOnHHmm, ", Off: ", timeOffHHmm)
         
         if timeNowHHmm >= timeOnHHmm and timeNowHHmm <= timeOffHHmm:
             bedTime = False            
@@ -413,13 +413,13 @@ def checkTime():
             bedTime = True
             powerMode = 0
         
-        print("Checktime: ", bedTime)
+        #print("Checktime: ", bedTime)
         time.sleep(15)
 
 
 def playSound():
     global btn_orange_flag
-    print("Start")
+    print("Start Sound")
     btn_orange_flag = 1
     
     pygame.mixer.init()
@@ -445,7 +445,7 @@ def playSound():
         time.sleep(0.25)
     
     rGPIO.output(led_orange_pin,rGPIO.LOW)
-    print("Finished")
+    print("Finished Sound")
     btn_orange_flag = 0
 
 
@@ -486,7 +486,7 @@ while True:
         print("    Thread Name: ", t.getName())
         time.sleep(0.5)
         
-    print("Bedtime - ", bedTime)
+    #print("Bedtime - ", bedTime)
     
     if powerMode == 0 and prevPowerMode == 1:
         print("Power off")
