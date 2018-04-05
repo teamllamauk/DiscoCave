@@ -5,7 +5,7 @@ import time
 import datetime
 
 
-timeNow = datetime.datetime.now().time()
+timeNow = datetime.datetime.now()
 print(timeNow)
 
 timeHHmm = datetime.datetime.strptime(timeNow, "%H:%M")
