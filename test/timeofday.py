@@ -4,7 +4,7 @@
 import time
 import datetime
 
-def checkTime()
+def checkTime():
     timeNow = datetime.datetime.now()
     timeNowHHmm = timeNow.strftime("%H:%M")
     
