@@ -54,17 +54,17 @@ bounceGreen = time.time()
 #btn_red_pin = 25        # Light Brightness
 #btn_blue_pin = 27        # Light Colour
 #btn_white_pin = 6       # Power On/Off
-btn_red_pin = 23
+btn_red_pin = 13
 btn_blue_pin = 24
-btn_white_pin = 6
-btn_green_pin = 13
-btn_orange_pin = 17
+btn_white_pin = 17
+btn_green_pin = 23
+btn_orange_pin = 6
 
-led_red_pin = 22
+led_red_pin = 12
 led_blue_pin = 25
-led_white_pin = 5
-led_green_pin = 12
-led_orange_pin = 27
+led_white_pin = 27
+led_green_pin = 22
+led_orange_pin = 5
 
 rGPIO.setmode(rGPIO.BCM)
 rGPIO.setwarnings(False)
