@@ -391,8 +391,8 @@ def checkTime():
     global powerMode
     
     wakeUp = "07:00"
-    #goToBed = "19:00"   
-    goToBed = "22:00"
+    goToBed = "19:15"   
+    #goToBed = "22:00"
     
     while True:
     
