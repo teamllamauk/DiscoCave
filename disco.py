@@ -448,9 +448,9 @@ def playSound():
     volume = pygame.mixer.music.get_volume()
     #print(volume)
     
-    audio_rand = randint(1, 25)    # Pick a random number between 1 and 25.
+    audio_rand = randint(1, 15)    # Pick a random number between 1 and 25.
     
-    if audio_rand == 25 :
+    if audio_rand == 15 :
         sound_file = "/home/pi/Development/DiscoCave/audio/vegimal.mp3"
         print("veg")
     else :
