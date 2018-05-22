@@ -183,7 +183,7 @@ def fader(delayMs, minBrightness, maxBrightness):
             start = time.time()
             if fadeDir == 1:
                 fadeBrightness = fadeBrightness + 1
-                if fadeBrightness == maxBrightness:
+6                if fadeBrightness == maxBrightness:
                     fadeDir = 0
             elif fadeDir == 0:
                 fadeBrightness = fadeBrightness - 1
@@ -390,9 +390,9 @@ def checkTime():
     global bedTime
     global powerMode
     
-    wakeUp = "07:00"
-    goToBed = "19:15"   
-    #goToBed = "22:00"
+    wakeUp = "07:45"
+    #goToBed = "19:15"   
+    goToBed = "20:15"
     
     while True:
     
@@ -448,9 +448,9 @@ def playSound():
     volume = pygame.mixer.music.get_volume()
     #print(volume)
     
-    audio_rand = randint(1, 15)    # Pick a random number between 1 and 25.
+    audio_rand = randint(1, 7)    # Pick a random number between 1 and 25.
     
-    if audio_rand == 15 :
+    if audio_rand == 7 :
         sound_file = "/home/pi/Development/DiscoCave/audio/vegimal.mp3"
         print("veg")
     else :
@@ -490,7 +490,7 @@ def runMode():
             t1.start()
         elif availableModes[selectedMode] == "bounceLEDs":
             #print("run 5")
-            t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.01,))
+            t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.005,))
             t1.start()
         elif availableModes[selectedMode] == "fader":
             #print("run 5")
