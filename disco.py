@@ -490,7 +490,7 @@ def runMode():
             t1.start()
         elif availableModes[selectedMode] == "bounceLEDs":
             #print("run 5")
-            t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.005,))
+            t1 = threading.Thread(name="lightAffect", target=bounceLEDs, args=(0.00001,))
             t1.start()
         elif availableModes[selectedMode] == "fader":
             #print("run 5")
