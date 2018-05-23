@@ -183,7 +183,7 @@ def fader(delayMs, minBrightness, maxBrightness):
             start = time.time()
             if fadeDir == 1:
                 fadeBrightness = fadeBrightness + 1
-6                if fadeBrightness == maxBrightness:
+                if fadeBrightness == maxBrightness:
                     fadeDir = 0
             elif fadeDir == 0:
                 fadeBrightness = fadeBrightness - 1
