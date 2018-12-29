@@ -9,9 +9,47 @@ import colorsys
 import pygame
 import RPi.GPIO as rGPIO
 from random import randint
+#webserver imports
+import string,cgi 
+from os import curdir, sep
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse
+
 
 sys.path.insert(0, '/home/pi/Development/APA102_Pi')
 import apa102
+
+class MyHandler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        try:
+            try:
+                url_addr, query_string = self.path.split("?")
+            except:
+                url_addr = self.path
+                query_string = ""
+            if url_addr == "/":
+                url_addr = "index.html"
+            try:
+                query = urlparse(self.path).query
+                query_components = dict(qc.split("=") for qc in query.split("&"))
+                qGpio = query_components["gpio"]
+                print ('gpio: -', qGpio,'-')
+                if qGpio == '1':
+                    print('gpio white button')
+                    whiteButton()
+            except:
+                print ("no qGpio")
+            f = open(curdir + sep + url_addr)
+            self.send_response(200)
+            self.send_header('Content-type',    'text/html')
+            self.end_headers()
+            self.wfile.write(bytes(f.read(), "utf-8"))
+            f.close()
+            return
+        except IOError:
+            self.send_error(404,'File Not Found: %s' % url_addr)
+
 
 strip = apa102.APA102(num_led=60, global_brightness=30, mosi = 10, sclk = 11, order='rgb')
 
@@ -35,7 +73,7 @@ global btn_orange_flag
 
 btn_orange_flag = 0
 prevPowerMode = 0
-bedTime = True
+bedTime = False
 powerMode = 0 # 0 is off, 1 is on
 selectedMode = 0 # index of availableModes
 availableModes = ("solidColour", "rainbow", "rotateLEDs", "fader", "bounceLEDs")
@@ -102,6 +140,31 @@ def endThread():
     strip.clear_strip()
     #strip.cleanup()
     #print("End Thread! ", "Thread Count: ", threading.activeCount(), ", KillThread = ", killThread, ", Stopped")
+
+
+
+def whiteButton():
+    global powerMode
+    global prevPowerMode
+    print('white button function')
+    print('white button power mode: ', powerMode)
+    if powerMode == 0:
+        rGPIO.output(led_white_pin,rGPIO.HIGH)
+        powerMode = 1
+    else:
+        rGPIO.output(led_white_pin,rGPIO.LOW)
+        powerMode = 0
+
+    if powerMode == 0 and prevPowerMode == 1:
+        print("Power off")
+        endThread()
+        prevPowerMode = 0
+        strip.clear_strip()
+        #strip.cleanup()
+    elif powerMode == 1 and prevPowerMode == 0:
+        print("Power on")
+        prevPowerMode = 1
+        runMode()
 
 
 def convertHSVtoRGB(hsvColour):
@@ -337,12 +400,14 @@ def btn_Callback(button_pin):
             bounceWhite = time.time()
             #print("o", powerMode)
             if bedTime == False:
-                if powerMode == 0:        
-                    rGPIO.output(led_white_pin,rGPIO.HIGH)
-                    powerMode = 1
-                else:
-                    rGPIO.output(led_white_pin,rGPIO.LOW)
-                    powerMode = 0
+                whiteButton()
+                
+                #if powerMode == 0:        
+                #    rGPIO.output(led_white_pin,rGPIO.HIGH)
+                #    powerMode = 1
+                #else:
+                #    rGPIO.output(led_white_pin,rGPIO.LOW)
+                #    powerMode = 0
             else:
                 rGPIO.output(led_white_pin,rGPIO.HIGH)
                 rGPIO.output(led_red_pin,rGPIO.HIGH)
@@ -390,9 +455,9 @@ def checkTime():
     global bedTime
     global powerMode
     
-    wakeUp = "07:45"
+    wakeUp = "00:01"
     #goToBed = "19:15"   
-    goToBed = "20:15"
+    goToBed = "23:59"
     
     while True:
     
@@ -497,12 +562,27 @@ def runMode():
             t1 = threading.Thread(name="lightAffect", target=fader, args=(10, 1, 30,))
             t1.start()
 
+powerMode = 0
 print("Started")
-tBed = threading.Thread(name="checkBedTime", target=checkTime)
-tBed.start()
+#tBed = threading.Thread(name="checkBedTime", target=checkTime)
+#tBed.start()
 
 tIllume = threading.Thread(name="illuminate", target=illuminateButtonPress)
 tIllume.start()
+
+
+server = HTTPServer(('', 80), MyHandler)
+print ('started httpserver...')
+server.serve_forever()
+#    except KeyboardInterrupt:
+#        print ('stopping server')
+#        server.socket.close()
+
+
+#if __name__ == '__main__':
+#    main()
+
+
 
 while True:
     #bedTime = checkTime
@@ -515,13 +595,12 @@ while True:
     #print("Bedtime - ", bedTime)
     
     if powerMode == 0 and prevPowerMode == 1:
-        print("Power off")
-        endThread()
-        prevPowerMode = 0
-        strip.clear_strip()
+        print("Power off - while loop")
+        #endThread()
+        #prevPowerMode = 0
+        #strip.clear_strip()
         #strip.cleanup()        
     elif powerMode == 1 and prevPowerMode == 0:
-        print("Power on")
-        prevPowerMode = 1       
-        runMode()
-
+        print("Power on - while loop")
+        #prevPowerMode = 1       
+        #runMode()
